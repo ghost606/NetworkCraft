@@ -1,4 +1,4 @@
-package ghost606.networkcraft.interfaces;
+package ghost606.networkcraft.interfaces.safechest;
 
 import ghost606.networkcraft.tileentities.TileEntitySafeChest;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,7 +37,7 @@ public class ContainerSafeChest extends Container {
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
-		return safeChest.isUseableByPlayer(entityplayer);
+		return this.safeChest.isUseableByPlayer(entityplayer);
 	}
 	
 	@Override
@@ -56,7 +56,7 @@ public class ContainerSafeChest extends Container {
 					return null;
 				}
 			}
-			else if (!mergeItemStack(stack, 36, 36 + safeChest.getSizeInventory(), false))
+			else if (!mergeItemStack(stack, 36, 36 + this.safeChest.getSizeInventory(), false))
 			{
 				return null;
 			}
