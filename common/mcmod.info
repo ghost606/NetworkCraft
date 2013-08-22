@@ -1,0 +1,15 @@
+[
+{
+    "modid" : "Networkcraft",
+    "name" : "Networkcraft",
+    "version" : "0.0.4"
+    "credits" : "Thanks to everybody who helped in any way",
+    "authors": [ "Ghost606" ],
+    "description": "This mod will provide new functionality to minecraft by adding lot's of new things",
+    "url" : "www.drizzlyday.com",
+    "updateUrl" : "",
+    "logoFile" : "",
+    "parent" : "",
+    "screenshots" : []
+}
+]
