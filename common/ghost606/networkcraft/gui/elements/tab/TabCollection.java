@@ -19,6 +19,15 @@ public class TabCollection implements IGuiElement {
 	}
 	
 	@Override
+	public void initGui() {
+		for (int i = 0; i < this.tabs.size(); i++)
+		{
+			GuiTab tab = this.tabs.get(i);
+			tab.initGui();
+		}
+	}
+	
+	@Override
 	public void draw()
 	{
 		for (int i = 0; i < this.tabs.size(); i++)

@@ -11,8 +11,6 @@ public class GuiNetworkCraft extends GuiContainer {
 	public GuiNetworkCraft(Container container)
 	{
 		super(container);
-		
-		this.tabs = new TabCollection();
 	}
 
 	public int getXSize()
@@ -37,6 +35,14 @@ public class GuiNetworkCraft extends GuiContainer {
 	public FontRenderer getFontRenderer()
 	{
 		return fontRenderer;
+	}
+	
+	@Override
+	public void initGui() {
+		super.initGui();
+		
+		this.tabs = new TabCollection();
+		this.tabs.initGui();
 	}
 	
 	@Override

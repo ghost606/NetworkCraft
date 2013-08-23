@@ -48,6 +48,11 @@ public class ListView extends Gui implements IGuiElement {
 	}
 	
 	@Override
+	public void initGui() {
+		
+	}
+	
+	@Override
 	public void draw()
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -82,7 +87,11 @@ public class ListView extends Gui implements IGuiElement {
 			if (mouseX >= this.x && mouseX <= this.x + this.width && mouseY >= this.y && mouseY <= this.y + this.height)
 			{
 				int index = (mouseY - this.y - this.selectPadding) / (this.lineHeight + 1 + this.selectPadding);
-				this.selected = index;
+				if (index < this.items.size())
+				{
+					this.selected = index;
+				}
+				
 				return true;
 			}
 		}

@@ -21,6 +21,11 @@ public class GuiSafeChest extends GuiNetworkCraft {
 		
 		xSize = 176;
 		ySize = 222;
+	}
+	
+	@Override
+	public void initGui() {
+		super.initGui();
 		
 		GuiNetworkCraft gui = (GuiNetworkCraft)this;
 		tabs.add(new UserTab(gui, this.getXSize(), 8));

@@ -38,6 +38,11 @@ public class GuiTab extends Gui implements IGuiElement {
 		this.currentWidth = this.minWidth;
 	}
 
+	@Override
+	public void initGui() {
+		
+	}
+	
 	public int getHeight()
 	{
 		return this.currentHeight;
