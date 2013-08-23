@@ -1,15 +1,16 @@
 [
 {
-    "modid" : "Networkcraft",
-    "name" : "Networkcraft",
-    "version" : "0.0.4"
-    "credits" : "Thanks to everybody who helped in any way",
-    "authors": [ "Ghost606" ],
+    "modid": "NC",
+    "name": "NetworkCraft",
     "description": "This mod will provide new functionality to minecraft by adding lot's of new things",
-    "url" : "www.drizzlyday.com",
-    "updateUrl" : "",
-    "logoFile" : "",
-    "parent" : "",
-    "screenshots" : []
+    "version": "@VERSION@",
+    "url": "www.drizzlyday.com",
+    "updateUrl": "",
+ 	"authorList": [ "Ghost606" ],
+    "credits": "Thanks to everybody who helped in any way",
+    "logoFile": "",
+ 	"screenshots": [],
+    "parent": "",
+    "dependencies": []
 }
 ]
