@@ -1,4 +1,4 @@
-package ghost606.networkcraft.Renders;
+package ghost606.networkcraft.rendering;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;

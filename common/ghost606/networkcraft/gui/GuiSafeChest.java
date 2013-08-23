@@ -1,7 +1,7 @@
-package ghost606.networkcraft.interfaces.safechest;
+package ghost606.networkcraft.gui;
 
-import ghost606.networkcraft.interfaces.GuiNetworkCraft;
-import ghost606.networkcraft.interfaces.tab.UserTab;
+import ghost606.networkcraft.container.ContainerSafeChest;
+import ghost606.networkcraft.gui.elements.tab.UserTab;
 import ghost606.networkcraft.resources.ResourceManager;
 import ghost606.networkcraft.tileentities.TileEntitySafeChest;
 
@@ -22,14 +22,15 @@ public class GuiSafeChest extends GuiNetworkCraft {
 		xSize = 176;
 		ySize = 222;
 		
-		tabManager.add(new UserTab());
+		GuiNetworkCraft gui = (GuiNetworkCraft)this;
+		tabs.add(new UserTab(gui, this.getXSize(), 8));
 	}
 	
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
 		GL11.glColor4f(1, 1, 1,1);
 		
-		Minecraft.getMinecraft().func_110434_K().func_110577_a(ResourceManager.SAFECHEST_TEXTURE);
+		Minecraft.getMinecraft().func_110434_K().func_110577_a(ResourceManager.Gui_Textures.SAFECHEST);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 	}
 	

@@ -2,8 +2,8 @@ package ghost606.networkcraft;
 
 import ghost606.networkcraft.blocks.Blocks;
 import ghost606.networkcraft.configuration.ConfigHandler;
+import ghost606.networkcraft.gui.GuiHandler;
 import ghost606.networkcraft.information.ModInfo;
-import ghost606.networkcraft.interfaces.GuiHandler;
 import ghost606.networkcraft.network.PacketHandler;
 import ghost606.networkcraft.proxies.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;

@@ -1,16 +1,18 @@
-package ghost606.networkcraft.interfaces;
+package ghost606.networkcraft.gui;
 
-import ghost606.networkcraft.interfaces.tab.TabManager;
+import ghost606.networkcraft.gui.elements.tab.TabCollection;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 
 public class GuiNetworkCraft extends GuiContainer {
-	protected TabManager tabManager;
+	protected TabCollection tabs;
 	
-	public GuiNetworkCraft(Container container) {
+	public GuiNetworkCraft(Container container)
+	{
 		super(container);
 		
-		this.tabManager = new TabManager(this);
+		this.tabs = new TabCollection();
 	}
 
 	public int getXSize()
@@ -32,6 +34,11 @@ public class GuiNetworkCraft extends GuiContainer {
 		return guiTop;
 	}
 	
+	public FontRenderer getFontRenderer()
+	{
+		return fontRenderer;
+	}
+	
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		
@@ -40,12 +47,12 @@ public class GuiNetworkCraft extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-		this.tabManager.draw(mouseX, mouseY);
+		this.tabs.draw();
 	}
 	
 	@Override
-	protected void mouseClicked(int x, int y, int mouseButton) {
-		super.mouseClicked(x, y, mouseButton);
-		this.tabManager.handleMouseClicked(x, y, mouseButton);
+	protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
+		super.mouseClicked(mouseX, mouseY, mouseButton);
+		this.tabs.collide(mouseX, mouseY, mouseButton);
 	}
 }

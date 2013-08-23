@@ -1,4 +1,4 @@
-package ghost606.networkcraft.interfaces.safechest;
+package ghost606.networkcraft.container;
 
 import ghost606.networkcraft.tileentities.TileEntitySafeChest;
 import net.minecraft.entity.player.EntityPlayer;

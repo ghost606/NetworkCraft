@@ -1,8 +1,7 @@
-package ghost606.networkcraft.interfaces;
+package ghost606.networkcraft.gui;
 
 import ghost606.networkcraft.Networkcraft;
-import ghost606.networkcraft.interfaces.safechest.ContainerSafeChest;
-import ghost606.networkcraft.interfaces.safechest.GuiSafeChest;
+import ghost606.networkcraft.container.ContainerSafeChest;
 import ghost606.networkcraft.tileentities.TileEntitySafeChest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
