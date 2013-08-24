@@ -9,18 +9,20 @@ public class UserTab extends GuiTab {
 	public UserTab(GuiNetworkCraft gui, int x, int y)
 	{
 		super(gui, x, y);
-		
+	
+		this.list = new ListView(gui, x + 25, y + 5, 80, 73);
 		backgroundColor = 564812;
 	}
 	
 	@Override
 	public void initGui() {
-		this.list = new ListView(gui, x + 25, y + 25, 80, 80);
 		this.list.addElement("Test01");
 		this.list.addElement("Test02");
 		this.list.addElement("Test03");
 		this.list.addElement("Test04");
 		this.list.addElement("Test05");
+		
+		super.initGui();
 	}
 	
 	@Override

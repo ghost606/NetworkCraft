@@ -60,8 +60,7 @@ public class ListView extends Gui implements IGuiElement {
 		Minecraft.getMinecraft().renderEngine.func_110577_a(ResourceManager.Gui_Textures.LISTVIEW);
 		drawTexturedModalRect(this.x, this.y, 0, 256 - this.height, 1, this.height);
 		drawTexturedModalRect(this.x + 1, this.y, 256 - this.width + 1, 0, this.width - 1, 1);
-		drawTexturedModalRect(this.x, this.y, 0, 0, 1, 1);
-		drawTexturedModalRect(this.x + 1, this.y + 1, 256 - this.width + 1, 256 - this.height + 1, this.width - 1, this.width - 1);
+		drawTexturedModalRect(this.x + 1, this.y + 1, 256 - this.width + 1, 256 - this.height + 1, this.width - 1, this.height - 1);
 		
 		for (int i = 0; i < this.items.size(); i++)
 		{

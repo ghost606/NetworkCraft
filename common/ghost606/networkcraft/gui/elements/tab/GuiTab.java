@@ -110,6 +110,7 @@ public class GuiTab extends Gui implements IGuiElement {
 	public void drawIcon(Icon icon, int x, int y) {
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0F);
 		drawTexturedModelRectFromIcon(x, y, icon, 16, 16);
+		
 	}
 
 	@Override
