@@ -77,6 +77,11 @@ public class ListView extends Gui implements IGuiElement {
 		}
 	}
 	
+	public void drawIcon()
+	{
+		
+	}
+	
 	@Override
 	public Boolean collide(int mouseX, int mouseY, int mouseButton) {
 		if (mouseButton == 0)

@@ -11,4 +11,8 @@ public class ResourceManager {
 		public static final ResourceLocation LISTVIEW = new ResourceLocation(ModInfo.Textures.ROOTFOLDER, ModInfo.Textures.GUI + "/listview.png");
 		public static final ResourceLocation SAFECHEST = new ResourceLocation(ModInfo.Textures.ROOTFOLDER, ModInfo.Textures.GUI + "/safechest.png");
 	}
+	public static final class Gui_Icons
+	{
+		
+	}
 }

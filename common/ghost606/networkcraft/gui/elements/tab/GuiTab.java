@@ -106,7 +106,7 @@ public class GuiTab extends Gui implements IGuiElement {
 		}
 		return false;
 	}
-
+	
 	public void drawIcon(Icon icon, int x, int y) {
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0F);
 		drawTexturedModelRectFromIcon(x, y, icon, 16, 16);
@@ -118,7 +118,7 @@ public class GuiTab extends Gui implements IGuiElement {
 		float colorR = (this.backgroundColor >> 16 & 255) / 255.0F;
 		float colorG = (this.backgroundColor >> 8 & 255) / 255.0F;
 		float colorB = (this.backgroundColor & 255) / 255.0F;
-
+		
 		GL11.glColor4f(colorR, colorG, colorB, 1.0F);
 
 		Minecraft.getMinecraft().renderEngine.func_110577_a(ResourceManager.Gui_Textures.TAB);
