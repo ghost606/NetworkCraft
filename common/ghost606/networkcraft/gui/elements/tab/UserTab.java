@@ -32,7 +32,7 @@ public class UserTab extends GuiTab {
 	@Override
 	public void draw() {
 		super.draw();
-		drawIcon(IconProvider.getInstance().getIcon(IconProvider.Button), x + 3, y + 4);
+		drawIcon(IconProvider.getInstance().getIcon(IconProvider.Access_Private), x + 3, y + 4);
 		if (this.isFullyOpened())
 		{
 			this.list.draw();

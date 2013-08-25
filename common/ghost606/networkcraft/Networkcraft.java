@@ -36,13 +36,13 @@ public class Networkcraft
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent fml)
 	{
-		MinecraftForge.EVENT_BUS.register(new EventHandlerCore());
 		ConfigHandler.init(fml.getSuggestedConfigurationFile());
 		Blocks.initBlocks();
 	}
 	@EventHandler
 	public void init(FMLInitializationEvent fml)
 	{
+		MinecraftForge.EVENT_BUS.register(new EventHandlerCore());
 		LanguageRegistry.instance().addStringLocalization("itemGroup.Networkcraft", "en_US", "Networkcraft");
 		Blocks.addNames();
 		Blocks.registerTileEntities();

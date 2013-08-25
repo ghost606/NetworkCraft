@@ -44,6 +44,7 @@ public class IconProvider {
 	public void registerIcons(IconRegister register)
 	{
 		icons = new Icon[IconProvider.Max];
+		
 		icons[IconProvider.Button] = register.registerIcon("networkcraft:icons/Icon_Button");
 		icons[IconProvider.Button_Highlight] = register.registerIcon("networkcraft:icons/Icon_Button_Highlight");
 		icons[IconProvider.Button_Inactive] = register.registerIcon("networkcraft:icons/Icon_Button_Inactive");

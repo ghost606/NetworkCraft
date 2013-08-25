@@ -5,6 +5,7 @@ import ghost606.networkcraft.gui.elements.IGuiElement;
 import ghost606.networkcraft.resources.ResourceManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.Icon;
 
 import org.lwjgl.opengl.GL11;
@@ -109,6 +110,7 @@ public class GuiTab extends Gui implements IGuiElement {
 	public void drawIcon(Icon icon, int x, int y) {
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0F);
 		drawTexturedModelRectFromIcon(x, y, icon, 16, 16);
+		Minecraft.getMinecraft().func_110434_K().func_110577_a(TextureMap.field_110576_c);
 	}
 
 	@Override
