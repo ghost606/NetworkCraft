@@ -1,16 +1,20 @@
 package ghost606.networkcraft.gui.elements.tab;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ghost606.networkcraft.gui.GuiNetworkCraft;
 import ghost606.networkcraft.gui.elements.listview.ListView;
+import ghost606.networkcraft.resources.IconProvider;
 
+@SideOnly(Side.CLIENT)
 public class UserTab extends GuiTab {
 	private ListView list;
-	
 	public UserTab(GuiNetworkCraft gui, int x, int y)
 	{
 		super(gui, x, y);
-	
+		
 		this.list = new ListView(gui, x + 25, y + 5, 80, 73);
+		
 		backgroundColor = 564812;
 	}
 	
@@ -28,6 +32,7 @@ public class UserTab extends GuiTab {
 	@Override
 	public void draw() {
 		super.draw();
+		drawIcon(IconProvider.getInstance().getIcon(IconProvider.Button), x + 3, y + 4);
 		if (this.isFullyOpened())
 		{
 			this.list.draw();

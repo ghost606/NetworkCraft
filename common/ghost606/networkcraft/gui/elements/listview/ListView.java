@@ -9,9 +9,13 @@ import ghost606.networkcraft.resources.ResourceManager;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 
+@SideOnly(Side.CLIENT)
 public class ListView extends Gui implements IGuiElement {
 	
 	private GuiNetworkCraft gui;
@@ -57,7 +61,7 @@ public class ListView extends Gui implements IGuiElement {
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-		Minecraft.getMinecraft().renderEngine.func_110577_a(ResourceManager.Gui_Textures.LISTVIEW);
+		Minecraft.getMinecraft().renderEngine.func_110577_a(ResourceManager.Gui_Textures.ListView);
 		drawTexturedModalRect(this.x, this.y, 0, 256 - this.height, 1, this.height);
 		drawTexturedModalRect(this.x + 1, this.y, 256 - this.width + 1, 0, this.width - 1, 1);
 		drawTexturedModalRect(this.x + 1, this.y + 1, 256 - this.width + 1, 256 - this.height + 1, this.width - 1, this.height - 1);

@@ -2,11 +2,13 @@ package ghost606.networkcraft;
 
 import ghost606.networkcraft.blocks.Blocks;
 import ghost606.networkcraft.configuration.ConfigHandler;
+import ghost606.networkcraft.core.EventHandlerCore;
 import ghost606.networkcraft.gui.GuiHandler;
 import ghost606.networkcraft.information.ModInfo;
 import ghost606.networkcraft.network.PacketHandler;
 import ghost606.networkcraft.proxies.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -34,6 +36,7 @@ public class Networkcraft
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent fml)
 	{
+		MinecraftForge.EVENT_BUS.register(new EventHandlerCore());
 		ConfigHandler.init(fml.getSuggestedConfigurationFile());
 		Blocks.initBlocks();
 	}

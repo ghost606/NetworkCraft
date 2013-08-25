@@ -1,5 +1,9 @@
 package ghost606.networkcraft.gui.elements;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
 public interface IGuiElement {
 	public void initGui();
 	public void draw();

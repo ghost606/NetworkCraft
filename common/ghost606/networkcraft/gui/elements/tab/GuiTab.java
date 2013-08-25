@@ -14,15 +14,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiTab extends Gui implements IGuiElement {
-	private boolean open;
 	protected int backgroundColor = 0xffffff;
-	
 	protected int x;
 	protected int y;
 	protected int maxWidth = 124;
 	protected int maxHeight = 124;
 	protected GuiNetworkCraft gui;
 	
+	private boolean open;
 	private int minWidth = 24;
 	private int currentWidth;
 	private int minHeight = 24;
@@ -110,7 +109,6 @@ public class GuiTab extends Gui implements IGuiElement {
 	public void drawIcon(Icon icon, int x, int y) {
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0F);
 		drawTexturedModelRectFromIcon(x, y, icon, 16, 16);
-		
 	}
 
 	@Override
@@ -121,7 +119,7 @@ public class GuiTab extends Gui implements IGuiElement {
 		
 		GL11.glColor4f(colorR, colorG, colorB, 1.0F);
 
-		Minecraft.getMinecraft().renderEngine.func_110577_a(ResourceManager.Gui_Textures.TAB);
+		Minecraft.getMinecraft().renderEngine.func_110577_a(ResourceManager.Gui_Textures.Tab);
 		drawTexturedModalRect(this.x, this.y, 0, 256 - this.currentHeight, 4, this.currentHeight);
 		drawTexturedModalRect(this.x + 4, this.y, 256 - this.currentWidth + 4, 0, currentWidth - 4, 4);
 		drawTexturedModalRect(this.x, this.y, 0, 0, 4, 4);

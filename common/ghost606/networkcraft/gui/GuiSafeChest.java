@@ -35,7 +35,7 @@ public class GuiSafeChest extends GuiNetworkCraft {
 	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
 		GL11.glColor4f(1, 1, 1,1);
 		
-		Minecraft.getMinecraft().func_110434_K().func_110577_a(ResourceManager.Gui_Textures.SAFECHEST);
+		Minecraft.getMinecraft().func_110434_K().func_110577_a(ResourceManager.Gui_Textures.SafeChest);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 	}
 	

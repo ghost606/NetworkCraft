@@ -12,6 +12,6 @@ public class BlockInfo {
 		public static final String KEY = "SafeChest";
 		public static final String TE_KEY = "SafeChestTileEntity";
 		public static final String NAME = "Safe chest";
-		public static final int DEFAULT_ID = 804;
+		public static final int DEFAULT_ID = 805;
 	}
 }

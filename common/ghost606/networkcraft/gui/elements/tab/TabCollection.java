@@ -5,6 +5,10 @@ import ghost606.networkcraft.gui.elements.IGuiElement;
 import java.util.ArrayList;
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
 public class TabCollection implements IGuiElement {
 	private List<GuiTab> tabs = new ArrayList<GuiTab>();
 	
@@ -36,6 +40,7 @@ public class TabCollection implements IGuiElement {
 			tab.update();
 			tab.draw();
 		}
+		
 	}
 	
 	@Override

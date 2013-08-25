@@ -7,12 +7,8 @@ public class ResourceManager {
 	
 	public static final class Gui_Textures
 	{
-		public static final ResourceLocation TAB = new ResourceLocation(ModInfo.Textures.ROOTFOLDER, ModInfo.Textures.GUI + "/tab.png");
-		public static final ResourceLocation LISTVIEW = new ResourceLocation(ModInfo.Textures.ROOTFOLDER, ModInfo.Textures.GUI + "/listview.png");
-		public static final ResourceLocation SAFECHEST = new ResourceLocation(ModInfo.Textures.ROOTFOLDER, ModInfo.Textures.GUI + "/safechest.png");
-	}
-	public static final class Gui_Icons
-	{
-		
+		public static final ResourceLocation Tab = new ResourceLocation(ModInfo.Textures.ROOTFOLDER, ModInfo.Textures.GUI + "/tab.png");
+		public static final ResourceLocation ListView = new ResourceLocation(ModInfo.Textures.ROOTFOLDER, ModInfo.Textures.GUI + "/listview.png");
+		public static final ResourceLocation SafeChest = new ResourceLocation(ModInfo.Textures.ROOTFOLDER, ModInfo.Textures.GUI + "/safechest.png");
 	}
 }
