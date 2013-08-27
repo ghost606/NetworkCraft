@@ -1,8 +1,8 @@
 package ghost606.networkcraft.gui;
 
 import ghost606.networkcraft.Networkcraft;
-import ghost606.networkcraft.container.ContainerSafeChest;
-import ghost606.networkcraft.tileentities.TileEntitySafeChest;
+import ghost606.networkcraft.container.ContainerSafe;
+import ghost606.networkcraft.entities.tileentities.TileEntitySafe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -21,9 +21,9 @@ public class GuiHandler implements IGuiHandler {
 		switch (ID) {
 		case 0:
 			TileEntity te = world.getBlockTileEntity(x, y, z);
-			if (te != null && te instanceof TileEntitySafeChest)
+			if (te != null && te instanceof TileEntitySafe)
 			{
-				return new ContainerSafeChest(player.inventory, (TileEntitySafeChest)te);
+				return new ContainerSafe(player.inventory, (TileEntitySafe)te);
 			}
 			break;
 
@@ -36,9 +36,9 @@ public class GuiHandler implements IGuiHandler {
 		switch (ID) {
 		case 0:
 			TileEntity te = world.getBlockTileEntity(x, y, z);
-			if (te != null && te instanceof TileEntitySafeChest)
+			if (te != null && te instanceof TileEntitySafe)
 			{
-				return new GuiSafeChest(player.inventory, (TileEntitySafeChest)te);
+				return new GuiSafe(player.inventory, (TileEntitySafe)te);
 			}
 			break;
 

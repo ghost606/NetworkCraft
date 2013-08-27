@@ -1,4 +1,4 @@
-package ghost606.networkcraft.tileentities;
+package ghost606.networkcraft.entities.tileentities;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -7,11 +7,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntitySafeChest extends TileEntity implements IInventory {
+public class TileEntitySafe extends TileEntity implements IInventory {
 
 	private ItemStack[] items;
 	
-	public TileEntitySafeChest()
+	public TileEntitySafe()
 	{
 		items = new ItemStack[54];
 	}

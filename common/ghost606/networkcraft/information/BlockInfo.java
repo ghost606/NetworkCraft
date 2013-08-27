@@ -9,9 +9,9 @@ public class BlockInfo {
 	public static class SafeChest
 	{
 		public static int ID;
-		public static final String KEY = "SafeChest";
-		public static final String TE_KEY = "SafeChestTileEntity";
-		public static final String NAME = "Safe chest";
+		public static final String KEY = "Safe";
+		public static final String TE_KEY = "SafeTileEntity";
+		public static final String NAME = "Safe";
 		public static final int DEFAULT_ID = 805;
 	}
 }

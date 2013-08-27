@@ -1,7 +1,7 @@
 package ghost606.networkcraft.blocks;
 
 import ghost606.networkcraft.Networkcraft;
-import ghost606.networkcraft.tileentities.TileEntitySafeChest;
+import ghost606.networkcraft.entities.tileentities.TileEntitySafe;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -13,16 +13,16 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 
-public class BlockSafeChest extends BlockContainer {
+public class BlockSafe extends BlockContainer {
 
-	public BlockSafeChest(int id) {
+	public BlockSafe(int id) {
 		super(id, Material.iron);
 		this.setCreativeTab(Networkcraft.tabNetworkcraft);
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
-		return new TileEntitySafeChest();
+		return new TileEntitySafe();
 	}
 	
 	@Override

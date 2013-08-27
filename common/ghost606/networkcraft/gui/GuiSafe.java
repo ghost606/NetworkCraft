@@ -1,9 +1,9 @@
 package ghost606.networkcraft.gui;
 
-import ghost606.networkcraft.container.ContainerSafeChest;
+import ghost606.networkcraft.container.ContainerSafe;
+import ghost606.networkcraft.entities.tileentities.TileEntitySafe;
 import ghost606.networkcraft.gui.elements.tab.UserTab;
 import ghost606.networkcraft.resources.ResourceManager;
-import ghost606.networkcraft.tileentities.TileEntitySafeChest;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -14,10 +14,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiSafeChest extends GuiNetworkCraft {
+public class GuiSafe extends GuiNetworkCraft {
 
-	public GuiSafeChest(InventoryPlayer invPlayer, TileEntitySafeChest safeChest) {
-		super(new ContainerSafeChest(invPlayer, safeChest));
+	public GuiSafe(InventoryPlayer invPlayer, TileEntitySafe safeChest) {
+		super(new ContainerSafe(invPlayer, safeChest));
 		
 		xSize = 176;
 		ySize = 222;

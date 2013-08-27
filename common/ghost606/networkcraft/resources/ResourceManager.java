@@ -9,6 +9,6 @@ public class ResourceManager {
 	{
 		public static final ResourceLocation Tab = new ResourceLocation(ModInfo.Textures.ROOTFOLDER, ModInfo.Textures.GUI + "/tab.png");
 		public static final ResourceLocation ListView = new ResourceLocation(ModInfo.Textures.ROOTFOLDER, ModInfo.Textures.GUI + "/listview.png");
-		public static final ResourceLocation SafeChest = new ResourceLocation(ModInfo.Textures.ROOTFOLDER, ModInfo.Textures.GUI + "/safechest.png");
+		public static final ResourceLocation SafeChest = new ResourceLocation(ModInfo.Textures.ROOTFOLDER, ModInfo.Textures.GUI + "/safe.png");
 	}
 }

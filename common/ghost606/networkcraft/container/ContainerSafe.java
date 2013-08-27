@@ -1,17 +1,17 @@
 package ghost606.networkcraft.container;
 
-import ghost606.networkcraft.tileentities.TileEntitySafeChest;
+import ghost606.networkcraft.entities.tileentities.TileEntitySafe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerSafeChest extends Container {
+public class ContainerSafe extends Container {
 
-	private TileEntitySafeChest safeChest;
+	private TileEntitySafe safeChest;
 	
-	public ContainerSafeChest(InventoryPlayer invPlayer, TileEntitySafeChest safeChest)
+	public ContainerSafe(InventoryPlayer invPlayer, TileEntitySafe safeChest)
 	{
 		this.safeChest = safeChest;
 		
