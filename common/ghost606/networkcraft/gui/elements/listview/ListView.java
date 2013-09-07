@@ -97,6 +97,7 @@ public class ListView extends Gui implements IGuiElement {
 				int index = (mouseY - this.y - this.selectPadding) / (this.lineHeight + 1 + this.selectPadding);
 				if (index < this.items.size())
 				{
+					Minecraft.getMinecraft().sndManager.playSoundFX("random.click", 1.0F, 0.8F);
 					this.selected = index;
 				}
 				

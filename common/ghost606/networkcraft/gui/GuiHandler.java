@@ -2,7 +2,7 @@ package ghost606.networkcraft.gui;
 
 import ghost606.networkcraft.Networkcraft;
 import ghost606.networkcraft.container.ContainerSafe;
-import ghost606.networkcraft.entities.tileentities.TileEntitySafe;
+import ghost606.networkcraft.tileentities.TileEntitySafe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

@@ -13,7 +13,7 @@ public class ConfigHandler {
 	{
 		conf = new Configuration(file);
 		
-		BlockInfo.SafeChest.ID = conf.get(BlockInfo.Sections.BLOCKS, BlockInfo.SafeChest.KEY, BlockInfo.SafeChest.DEFAULT_ID).getInt();
+		BlockInfo.Safe.ID = conf.get(BlockInfo.Sections.BLOCKS, BlockInfo.Safe.KEY, BlockInfo.Safe.DEFAULT_ID).getInt();
 		
 		conf.save();
 	}

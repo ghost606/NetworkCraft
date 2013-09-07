@@ -1,24 +1,49 @@
 package ghost606.networkcraft.rendering;
 
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
+import ghost606.networkcraft.resources.ResourceManager;
+import ghost606.networkcraft.tileentities.TileEntitySafe;
 
-public class RenderSafe extends Render {
+import org.lwjgl.opengl.GL11;
 
-	public void doRenderSafe(Entity entity, double x, double y, double z, float d1, float f1)
+import net.minecraft.client.model.ModelChest;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
+
+public class RenderSafe extends TileEntitySpecialRenderer {
+	
+	private static final ModelChest MODEL = new ModelChest();
+	
+	public void renderTileEntityChest(TileEntitySafe tileEntity, double x, double y, double z, float partialTick)
 	{
+		ModelChest modelChest = MODEL;
+		func_110628_a(ResourceManager.Block_Textures.Safe);
 		
-	}
-	@Override
-	protected ResourceLocation func_110775_a(Entity entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void doRender(Entity entity, double x, double y, double z, float d1, float f1) {
-		// TODO Auto-generated method stub
-		doRenderSafe(entity, x, y, z, d1, f1);
-	}
+		GL11.glPushMatrix();
+		GL11.glEnable(32826);
+		
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		GL11.glTranslatef((float) x, (float) y + 1.0F, (float) z + 1.0F);
+		GL11.glScalef(1.0F, - 1.0F, - 1.0F);
+		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+		GL11.glTranslatef(- 0.5F, - 0.5F, - 0.5F);
+		
 
+		float lidangle = tileEntity.prevLidAngle + (tileEntity.lidAngle - tileEntity.prevLidAngle) * partialTick;
+		
+        lidangle = 1.0F - lidangle;
+        lidangle = 1.0F - lidangle * lidangle * lidangle;
+        
+        modelChest.chestLid.rotateAngleX = -((lidangle * 3.141593F) / 2.0F);
+        modelChest.renderAll();
+        
+		GL11.glDisable(32826);
+		GL11.glPopMatrix();
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+	}
+	
+	@Override
+	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float partialTick) {
+		
+		renderTileEntityChest((TileEntitySafe) tileEntity, x, y, z, partialTick);
+	}
 }

@@ -1,6 +1,6 @@
 package ghost606.networkcraft.container;
 
-import ghost606.networkcraft.entities.tileentities.TileEntitySafe;
+import ghost606.networkcraft.tileentities.TileEntitySafe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

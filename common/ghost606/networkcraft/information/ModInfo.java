@@ -10,6 +10,7 @@ public class ModInfo {
 	{
 		public static final String ROOTFOLDER = "networkcraft";
 		public static final String GUI = "textures/gui";
+		public static final String BLOCKS = "textures/blocks";
 	}
 	
 }

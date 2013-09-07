@@ -100,6 +100,7 @@ public class GuiTab extends Gui implements IGuiElement {
 			mouseY = mouseY - this.gui.getOffsetTop();
 			if (mouseX >= this.x && mouseX <= this.x + this.currentWidth && mouseY >= this.y && mouseY <= this.y + this.currentHeight)
 			{
+				Minecraft.getMinecraft().sndManager.playSoundFX("random.click", 1.0F, 1.0F);
 				this.toggleOpen();
 				return true;
 			}
@@ -108,9 +109,10 @@ public class GuiTab extends Gui implements IGuiElement {
 	}
 	
 	public void drawIcon(Icon icon, int x, int y) {
-		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0F);
-		drawTexturedModelRectFromIcon(x, y, icon, 16, 16);
+		GL11.glDisable(2896);
 		Minecraft.getMinecraft().func_110434_K().func_110577_a(TextureMap.field_110576_c);
+		drawTexturedModelRectFromIcon(x, y, icon, 16, 16);
+		GL11.glEnable(2896);
 	}
 
 	@Override

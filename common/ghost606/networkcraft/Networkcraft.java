@@ -6,7 +6,7 @@ import ghost606.networkcraft.core.EventHandlerCore;
 import ghost606.networkcraft.gui.GuiHandler;
 import ghost606.networkcraft.information.ModInfo;
 import ghost606.networkcraft.network.PacketHandler;
-import ghost606.networkcraft.proxies.CommonProxy;
+import ghost606.networkcraft.network.proxies.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
@@ -26,7 +26,7 @@ public class Networkcraft
 	@Instance(ModInfo.ModId)
 	public static Networkcraft instance;
 	
-	@SidedProxy(clientSide = "ghost606.networkcraft.proxies.ClientProxy", serverSide = "ghost606.networkcraft.proxies.CommonProxy")
+	@SidedProxy(clientSide = "ghost606.networkcraft.network.proxies.ClientProxy", serverSide = "ghost606.networkcraft.network.proxies.CommonProxy")
 	public static CommonProxy proxy;
 	
 	public static CreativeTabs tabNetworkcraft = new CreativeTabs("Networkcraft");
@@ -38,6 +38,9 @@ public class Networkcraft
 	{
 		ConfigHandler.init(fml.getSuggestedConfigurationFile());
 		Blocks.initBlocks();
+		
+		proxy.initSounds();
+		proxy.initRenders();
 	}
 	@EventHandler
 	public void init(FMLInitializationEvent fml)

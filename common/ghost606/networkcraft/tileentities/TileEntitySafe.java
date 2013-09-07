@@ -1,15 +1,17 @@
-package ghost606.networkcraft.entities.tileentities;
+package ghost606.networkcraft.tileentities;
 
+import ghost606.networkcraft.information.BlockInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
 
-public class TileEntitySafe extends TileEntity implements IInventory {
+public class TileEntitySafe extends TileEntityChest implements IInventory {
 
 	private ItemStack[] items;
+	private static final float openSpeed = 0.1F;
 	
 	public TileEntitySafe()
 	{
@@ -80,13 +82,52 @@ public class TileEntitySafe extends TileEntity implements IInventory {
 	}
 
 	@Override
+	public void updateEntity() {
+		super.updateEntity();
+		this.prevLidAngle = this.lidAngle;
+		if (this.numUsingPlayers > 0)
+		{
+			if (this.lidAngle == 0.0F)
+			{
+				 double x = (double)this.xCoord + 0.5D;
+				 double z = (double)this.zCoord + 0.5D;
+				 this.worldObj.playSoundEffect(x, (double) yCoord + 0.5D, z, "random.chestopen", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
+			}
+			this.lidAngle = Math.min(this.lidAngle + openSpeed, 1.0F);
+		}
+		else
+		{
+			if (this.lidAngle == 1.0F)
+			{
+				double x = (double)this.xCoord + 0.5D;
+	            double z = (double)this.zCoord + 0.5D;
+	            this.worldObj.playSoundEffect(x, (double)this.yCoord + 0.5D, z, "random.chestclosed", 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+			}
+			this.lidAngle = Math.max(this.lidAngle - openSpeed, 0.0F);
+		}
+	}
+	
+	@Override
+	public boolean receiveClientEvent(int id, int i) {
+		if (id == 1)
+        {
+            numUsingPlayers = i;
+        }
+		return true;
+	}
+	
+	@Override
 	public void openChest() {
-		
+		if (worldObj == null) return;
+		numUsingPlayers++;
+        worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID, 1, numUsingPlayers);
 	}
 
 	@Override
 	public void closeChest() {
-		
+		if (worldObj == null) return;
+		numUsingPlayers--;
+        worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID, 1, numUsingPlayers);
 	}
 
 	@Override

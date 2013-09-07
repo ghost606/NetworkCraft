@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.Icon;
 
 public class GuiIconButton extends GuiButton {
@@ -43,10 +44,12 @@ public class GuiIconButton extends GuiButton {
 	{
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0F);
 		drawTexturedModelRectFromIcon(x, y, icon, 16, 16);
+		Minecraft.getMinecraft().func_110434_K().func_110577_a(TextureMap.field_110576_c);
 	}
 	
 	@Override
 	public boolean mousePressed(Minecraft minecraft, int mouseX, int mouseY) {
+		Minecraft.getMinecraft().sndManager.playSoundFX("random.click", 1.0F, 0.8F);
 		state = State.Active;
 		return super.mousePressed(minecraft, mouseX, mouseY);
 	}
