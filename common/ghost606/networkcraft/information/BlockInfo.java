@@ -14,4 +14,12 @@ public class BlockInfo {
 		public static final String NAME = "Safe";
 		public static final int DEFAULT_ID = 801;
 	}
+	public static class UserManager
+	{
+		public static int ID;
+		public static final String KEY = "UserManager";
+		public static final String TE_KEY = "UserManagerTileEntity";
+		public static final String NAME = "UserManager";
+		public static final int DEFAULT_ID = 802;
+	}
 }

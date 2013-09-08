@@ -6,12 +6,16 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.TileEntity;
 
-public class TileEntitySafe extends TileEntityChest implements IInventory {
+public class TileEntitySafe extends TileEntity implements IInventory {
 
 	private ItemStack[] items;
 	private static final float openSpeed = 0.1F;
+	
+	private int numUsingPlayers;
+	public float prevLidAngle;
+	public float lidAngle;
 	
 	public TileEntitySafe()
 	{

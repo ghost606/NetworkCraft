@@ -14,6 +14,7 @@ public class ConfigHandler {
 		conf = new Configuration(file);
 		
 		BlockInfo.Safe.ID = conf.get(BlockInfo.Sections.BLOCKS, BlockInfo.Safe.KEY, BlockInfo.Safe.DEFAULT_ID).getInt();
+		BlockInfo.UserManager.ID = conf.get(BlockInfo.Sections.BLOCKS, BlockInfo.UserManager.KEY, BlockInfo.UserManager.DEFAULT_ID).getInt();
 		
 		conf.save();
 	}
