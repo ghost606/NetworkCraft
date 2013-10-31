@@ -7,7 +7,7 @@
 	"version": "@VERSION@",
     "url": "www.drizzlyday.com",
     "updateUrl": "",
- 	"authorList": [ "Ghost606" ],
+ 	"authorList": "Ghost606",
     "credits": "Thanks to everybody who helped in any way",
 }
 ]

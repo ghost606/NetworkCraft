@@ -16,7 +16,7 @@ public class RenderSafe extends TileEntitySpecialRenderer {
 	public void renderTileEntityChest(TileEntitySafe tileEntity, double x, double y, double z, float partialTick)
 	{
 		ModelChest modelChest = MODEL;
-		func_110628_a(ResourceManager.Block_Textures.Safe);
+		bindTexture(ResourceManager.Block_Textures.Safe);
 		
 		GL11.glPushMatrix();
 		GL11.glEnable(32826);

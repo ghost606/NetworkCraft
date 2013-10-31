@@ -19,8 +19,8 @@ public class GuiSafe extends GuiNetworkCraft {
 	public GuiSafe(InventoryPlayer invPlayer, TileEntitySafe safeChest) {
 		super(new ContainerSafe(invPlayer, safeChest));
 		
-		xSize = 176;
-		ySize = 222;
+		xSize = 211;
+		ySize = 221;
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class GuiSafe extends GuiNetworkCraft {
 	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
 		GL11.glColor4f(1, 1, 1,1);
 		
-		Minecraft.getMinecraft().func_110434_K().func_110577_a(ResourceManager.Gui_Textures.SafeChest);
+		Minecraft.getMinecraft().renderEngine.bindTexture(ResourceManager.Gui_Textures.SafeChest);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 	}
 	

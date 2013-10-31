@@ -15,32 +15,33 @@ import cpw.mods.fml.common.network.FMLNetworkHandler;
 
 public class BlockSafe extends BlockChest {
 
-	public BlockSafe(int id) {
+	public BlockSafe(int id)
+	{
 		super(id, -1);
 		this.setHardness(3.0F);
 		this.setCreativeTab(Networkcraft.tabNetworkcraft);
-		this.setUnlocalizedName(BlockInfo.Safe.NAME);
+		this.setUnlocalizedName(BlockInfo.Safe.UNLOCALIZED_NAME);
 		this.disableStats();
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world)
+	{
 		return new TileEntitySafe();
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z,
-			EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+	{
 		if (!world.isRemote) {
-			FMLNetworkHandler.openGui(player, Networkcraft.instance, 0, world,
-					x, y, z);
+			FMLNetworkHandler.openGui(player, Networkcraft.instance, 0, world, x, y, z);
 		}
-
 		return true;
 	}
 
 	@Override
-	public void breakBlock(World world, int x, int y, int z, int id, int meta) {
+	public void breakBlock(World world, int x, int y, int z, int id, int meta)
+	{
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if (te != null && te instanceof IInventory) {
 			IInventory inventory = (IInventory) te;
@@ -72,13 +73,14 @@ public class BlockSafe extends BlockChest {
 	}
 
 	@Override
-	public void unifyAdjacentChests(World par1World, int par2, int par3,
-			int par4) {
+	public void unifyAdjacentChests(World par1World, int par2, int par3, int par4)
+	{
 
 	}
 
 	@Override
-	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
+	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
+	{
 		return true;
 	}
 

@@ -13,7 +13,7 @@ public class UserTab extends GuiTab {
 	{
 		super(gui, x, y);
 		
-		this.list = new ListView(gui, x + 25, y + 5, 80, 73);
+		this.list = new ListView(gui, x + 20, y + 5, 78, 73);
 		
 		backgroundColor = 564812;
 	}

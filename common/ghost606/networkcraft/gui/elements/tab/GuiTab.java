@@ -1,5 +1,7 @@
 package ghost606.networkcraft.gui.elements.tab;
 
+import org.lwjgl.opengl.GL11;
+
 import ghost606.networkcraft.gui.GuiNetworkCraft;
 import ghost606.networkcraft.gui.elements.IGuiElement;
 import ghost606.networkcraft.resources.ResourceManager;
@@ -7,9 +9,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.Icon;
-
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -18,7 +17,7 @@ public class GuiTab extends Gui implements IGuiElement {
 	protected int backgroundColor = 0xffffff;
 	protected int x;
 	protected int y;
-	protected int maxWidth = 124;
+	protected int maxWidth = 104;
 	protected int maxHeight = 124;
 	protected GuiNetworkCraft gui;
 	
@@ -110,7 +109,7 @@ public class GuiTab extends Gui implements IGuiElement {
 	
 	public void drawIcon(Icon icon, int x, int y) {
 		GL11.glDisable(2896);
-		Minecraft.getMinecraft().func_110434_K().func_110577_a(TextureMap.field_110576_c);
+		Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationItemsTexture);
 		drawTexturedModelRectFromIcon(x, y, icon, 16, 16);
 		GL11.glEnable(2896);
 	}
@@ -123,7 +122,7 @@ public class GuiTab extends Gui implements IGuiElement {
 		
 		GL11.glColor4f(colorR, colorG, colorB, 1.0F);
 
-		Minecraft.getMinecraft().renderEngine.func_110577_a(ResourceManager.Gui_Textures.Tab);
+		Minecraft.getMinecraft().renderEngine.bindTexture(ResourceManager.Gui_Textures.Tab);
 		drawTexturedModalRect(this.x, this.y, 0, 256 - this.currentHeight, 4, this.currentHeight);
 		drawTexturedModalRect(this.x + 4, this.y, 256 - this.currentWidth + 4, 0, currentWidth - 4, 4);
 		drawTexturedModalRect(this.x, this.y, 0, 0, 4, 4);

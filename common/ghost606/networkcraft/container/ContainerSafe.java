@@ -9,35 +9,35 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerSafe extends Container {
 
-	private TileEntitySafe safeChest;
+	private TileEntitySafe safe;
 	
-	public ContainerSafe(InventoryPlayer invPlayer, TileEntitySafe safeChest)
+	public ContainerSafe(InventoryPlayer invPlayer, TileEntitySafe safe)
 	{
-		this.safeChest = safeChest;
+		this.safe = safe;
 		
 		for (int x = 0; x < 9; x++)
 		{
-			addSlotToContainer(new Slot(invPlayer, x, 8 + 18 * x, 198));
+			addSlotToContainer(new Slot(invPlayer, x, 26 + 18 * x, 198));
 		}
 		for (int y = 0; y < 3; y++)
 		{
 			for (int x = 0; x < 9; x++)
 			{
-				addSlotToContainer(new Slot(invPlayer, x + y * 9 + 9, 8 + 18 * x, 140 + y * 18));
+				addSlotToContainer(new Slot(invPlayer, x + y * 9 + 9, 26 + 18 * x, 140 + y * 18));
 			}
 		}
 		for (int y = 0; y < 6; y++)
 		{
-			for (int x = 0; x < 9; x++)
+			for (int x = 0; x < 11; x++)
 			{
-				addSlotToContainer(new Slot(safeChest, x + y * 9, 8 + 18 * x, 18 + y * 18));
+				addSlotToContainer(new Slot(safe, x + y * 11, 8 + 18 * x, 18 + y * 18));
 			}
 		}
 	}
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
-		return this.safeChest.isUseableByPlayer(entityplayer);
+		return this.safe.isUseableByPlayer(entityplayer);
 	}
 	
 	@Override
@@ -56,7 +56,7 @@ public class ContainerSafe extends Container {
 					return null;
 				}
 			}
-			else if (!mergeItemStack(stack, 36, 36 + this.safeChest.getSizeInventory(), false))
+			else if (!mergeItemStack(stack, 36, 36 + this.safe.getSizeInventory(), false))
 			{
 				return null;
 			}

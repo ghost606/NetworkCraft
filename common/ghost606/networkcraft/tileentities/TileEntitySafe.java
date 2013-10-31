@@ -6,9 +6,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
 
-public class TileEntitySafe extends TileEntity implements IInventory {
+public class TileEntitySafe extends TileEntityChest implements IInventory {
 
 	private ItemStack[] items;
 	private static final float openSpeed = 0.1F;
@@ -19,7 +19,7 @@ public class TileEntitySafe extends TileEntity implements IInventory {
 	
 	public TileEntitySafe()
 	{
-		items = new ItemStack[54];
+		items = new ItemStack[66];
 	}
 	
 	@Override
