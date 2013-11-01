@@ -20,7 +20,12 @@ public class GuiNetworkCraft extends GuiContainer {
 		
 		this.tabs = new TabCollection();
 	}
-
+	
+	public TabCollection getTabCollection()
+	{
+		return tabs;
+	}
+	
 	public int getXSize()
 	{
 		return xSize;

@@ -1,6 +1,8 @@
 package ghost606.networkcraft.gui;
 
 import ghost606.networkcraft.container.ContainerSafe;
+import ghost606.networkcraft.gui.elements.tab.TabCollection;
+import ghost606.networkcraft.gui.elements.tab.UserManagerTab;
 import ghost606.networkcraft.gui.elements.tab.UserTab;
 import ghost606.networkcraft.resources.ResourceManager;
 import ghost606.networkcraft.tileentities.TileEntitySafe;
@@ -21,13 +23,13 @@ public class GuiSafe extends GuiNetworkCraft {
 		
 		xSize = 211;
 		ySize = 221;
+		
+		tabs.add(new UserTab((GuiNetworkCraft)this, this.getXSize(), TabCollection.yMargin + TabCollection.tabHeightClosed * this.tabs.getSize()));
+		tabs.add(new UserManagerTab((GuiNetworkCraft)this, this.getXSize(), TabCollection.yMargin + TabCollection.tabHeightClosed * this.tabs.getSize()));
 	}
 	
 	@Override
 	public void initGui() {
-		GuiNetworkCraft gui = (GuiNetworkCraft)this;
-		tabs.add(new UserTab(gui, this.getXSize(), 8));
-		
 		super.initGui();
 	}
 	

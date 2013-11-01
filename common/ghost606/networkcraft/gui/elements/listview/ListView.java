@@ -28,11 +28,11 @@ public class ListView extends Gui implements IGuiElement {
 	
 	private List<String> items;
 	
-	private final int textColor = 14737632;
-	private final int selectedColor = -16777216;
-	private final int lineHeight = 11;
-	private final int rowPadding = 5;
-	private final int selectPadding = 2;
+	private static final int textColor = 14737632;
+	private static final int selectedColor = -16777216;
+	private static final int lineHeight = 11;
+	private static final int rowPadding = 5;
+	private static final int selectPadding = 2;
 	
 	public ListView(GuiNetworkCraft gui, int x, int y, int width, int height)
 	{
@@ -43,7 +43,7 @@ public class ListView extends Gui implements IGuiElement {
 		this.width = width;
 		
 		this.items = new ArrayList<String>();
-		this.rows = height / this.lineHeight;
+		this.rows = height / lineHeight;
 	}
 	
 	public void addElement(String element)
@@ -74,10 +74,10 @@ public class ListView extends Gui implements IGuiElement {
 			}
 			if (this.selected == i)
 			{
-				int yLocation = this.y + this.selectPadding + (this.selectPadding + 1 + this.lineHeight) * i;
-				drawRect(x + this.selectPadding, yLocation, this.x + this.width - this.selectPadding, yLocation + this.lineHeight + this.selectPadding, selectedColor);
+				int yLocation = this.y + selectPadding + (selectPadding + 1 + lineHeight) * i;
+				drawRect(x + selectPadding, yLocation, this.x + this.width - selectPadding, yLocation + lineHeight + selectPadding, selectedColor);
 			}
-			this.gui.getFontRenderer().drawString(this.items.get(i), this.x + this.rowPadding, this.y + this.rowPadding + (this.lineHeight + this.selectPadding + 1) * i, this.textColor);
+			this.gui.getFontRenderer().drawString(this.items.get(i), this.x + rowPadding, this.y + rowPadding + (lineHeight + selectPadding + 1) * i, textColor);
 		}
 	}
 	
@@ -94,7 +94,7 @@ public class ListView extends Gui implements IGuiElement {
 			mouseY = mouseY - this.gui.getOffsetTop();
 			if (mouseX >= this.x && mouseX <= this.x + this.width && mouseY >= this.y && mouseY <= this.y + this.height)
 			{
-				int index = (mouseY - this.y - this.selectPadding) / (this.lineHeight + 1 + this.selectPadding);
+				int index = (mouseY - this.y - selectPadding) / (lineHeight + 1 + selectPadding);
 				if (index < this.items.size())
 				{
 					Minecraft.getMinecraft().sndManager.playSoundFX("random.click", 1.0F, 0.8F);

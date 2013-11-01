@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ghost606.networkcraft.Networkcraft;
 import ghost606.networkcraft.information.BlockInfo;
+import ghost606.networkcraft.information.ModInfo;
 import ghost606.networkcraft.tileentities.TileEntityUserManager;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -44,7 +45,7 @@ public class BlockUserManager extends BlockContainer {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister icon) {
-		blockIcon = icon.registerIcon(BlockInfo.UserManager.KEY+ ":" + BlockInfo.UserManager.ICON_NAME);
+		blockIcon = icon.registerIcon(ModInfo.Textures.ROOTFOLDER + ":" + BlockInfo.UserManager.ICON_NAME);
 	}
 	
 	@Override

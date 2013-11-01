@@ -15,5 +15,6 @@ public class ResourceManager {
 	public static final class Block_Textures
 	{
 		public static final ResourceLocation Safe = new ResourceLocation(ModInfo.Textures.ROOTFOLDER, ModInfo.Textures.BLOCKS + "/safe.png");
+		public static final ResourceLocation UserManager = new ResourceLocation(ModInfo.Textures.ROOTFOLDER, ModInfo.Textures.BLOCKS + "/iron_block.png");
 	}
 }
