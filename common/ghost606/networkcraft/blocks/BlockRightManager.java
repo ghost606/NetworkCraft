@@ -15,15 +15,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
-public class BlockUserManager extends BlockContainer {
+public class BlockRightManager extends BlockContainer {
 
 	private static Icon blockIcon;	
 	
-	public BlockUserManager(int id) {
+	public BlockRightManager(int id) {
 		super(id, Material.iron);
 		this.setHardness(3.0F);
 		this.setCreativeTab(Networkcraft.tabNetworkcraft);
-		this.setUnlocalizedName(BlockInfo.UserManager.UNLOCALIZED_NAME);
+		this.setUnlocalizedName(BlockInfo.RightManager.UNLOCALIZED_NAME);
 	}
 	
 	@Override
@@ -36,7 +36,7 @@ public class BlockUserManager extends BlockContainer {
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
 	{
 		if (!world.isRemote) {
-			FMLNetworkHandler.openGui(player, Networkcraft.instance, 2, world, x, y, z);
+			FMLNetworkHandler.openGui(player, Networkcraft.instance, 1, world, x, y, z);
 		}
 		return true;
 	}
@@ -44,7 +44,7 @@ public class BlockUserManager extends BlockContainer {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister icon) {
-		blockIcon = icon.registerIcon(ModInfo.Textures.ROOTFOLDER + ":" + BlockInfo.UserManager.ICON_NAME);
+		blockIcon = icon.registerIcon(ModInfo.Textures.ROOTFOLDER + ":" + BlockInfo.RightManager.ICON_NAME);
 	}
 	
 	@Override

@@ -13,63 +13,72 @@ public class TileEntityUserManager extends TileEntity implements IInventory {
 	}
 	
 	@Override
-	public int getSizeInventory() {
-		return 1;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int i) {
-		return null;
-	}
-
-	@Override
-	public ItemStack decrStackSize(int i, int j) {
-		return null;
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int i) {
-		return null;
-	}
-
-	@Override
-	public void setInventorySlotContents(int i, ItemStack itemstack) {
-		
-	}
-
-	@Override
-	public String getInvName() {
-		return "Usermanager";
-	}
-
-	@Override
-	public boolean isInvNameLocalized() {
-		return false;
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 0;
-	}
-
-	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
 		return entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64;
 	}
 
 	@Override
-	public void openChest() {
+	public int getSizeInventory() {
+		return 0;
+	}
 
+	@Override
+	public ItemStack getStackInSlot(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ItemStack decrStackSize(int i, int j) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ItemStack getStackInSlotOnClosing(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setInventorySlotContents(int i, ItemStack itemstack) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getInvName() {
+		// TODO Auto-generated method stub
+		return "User manager";
+	}
+
+	@Override
+	public boolean isInvNameLocalized() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getInventoryStackLimit() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void openChest() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void closeChest() {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
+		// TODO Auto-generated method stub
 		return false;
 	}
-	
 }

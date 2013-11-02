@@ -1,10 +1,13 @@
 package ghost606.networkcraft.network;
 
 import ghost606.networkcraft.Networkcraft;
+import ghost606.networkcraft.container.ContainerRightManager;
 import ghost606.networkcraft.container.ContainerSafe;
 import ghost606.networkcraft.container.ContainerUserManager;
+import ghost606.networkcraft.gui.GuiRightManager;
 import ghost606.networkcraft.gui.GuiSafe;
 import ghost606.networkcraft.gui.GuiUserManager;
+import ghost606.networkcraft.tileentities.TileEntityRightManager;
 import ghost606.networkcraft.tileentities.TileEntitySafe;
 import ghost606.networkcraft.tileentities.TileEntityUserManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,6 +35,11 @@ public class GuiHandler implements IGuiHandler {
 							(TileEntitySafe) te);
 				}
 			case 1:
+				if (te instanceof TileEntityRightManager) {
+					return new ContainerRightManager(player.inventory,
+							(TileEntityRightManager) te);
+				}
+			case 2:
 				if (te instanceof TileEntityUserManager) {
 					return new ContainerUserManager(player.inventory,
 							(TileEntityUserManager) te);
@@ -53,6 +61,11 @@ public class GuiHandler implements IGuiHandler {
 					return new GuiSafe(player.inventory, (TileEntitySafe) te);
 				}
 			case 1:
+				if (te instanceof TileEntityRightManager) {
+					return new GuiRightManager(player.inventory,
+							(TileEntityRightManager) te);
+				}
+			case 2:
 				if (te instanceof TileEntityUserManager) {
 					return new GuiUserManager(player.inventory,
 							(TileEntityUserManager) te);

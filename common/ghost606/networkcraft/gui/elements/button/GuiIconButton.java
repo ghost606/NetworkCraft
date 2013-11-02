@@ -16,6 +16,7 @@ public class GuiIconButton extends GuiButton {
 		super(0, x, y, width, height, "");
 		this.icon = icon;
 		this.tooltip = tooltipText;
+		this.enabled = true;
 	}
 	
 	private void drawIcon(Icon icon)
@@ -24,7 +25,12 @@ public class GuiIconButton extends GuiButton {
 		Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationItemsTexture);
 		drawTexturedModelRectFromIcon(this.xPosition + 2, this.yPosition + 2, icon, 16, 16);
 	}
-
+	
+	@Override
+	public boolean mousePressed(Minecraft minecraft, int xMouse, int yMouse) {
+		return super.mousePressed(minecraft, xMouse, yMouse);
+	}
+	
 	@Override
 	public void drawButton(Minecraft minecraft, int x, int y) {
 		super.drawButton(minecraft, x, y);
