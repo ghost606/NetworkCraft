@@ -1,9 +1,10 @@
 package ghost606.networkcraft.tileentities;
 
+import ghost606.networkcraft.information.BlockInfo;
+
 import java.util.Iterator;
 import java.util.List;
 
-import net.minecraft.block.BlockChest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.IInventory;
@@ -11,19 +12,19 @@ import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraftforge.common.ForgeDirection;
 
-public class TileEntitySafe extends TileEntityChest implements IInventory {
+public class TileEntitySafe extends TileEntity implements IInventory {
 
 	private ItemStack[] items;
 	private int ticksSinceSync;
-	
-	
+	private byte chestFacing = 0;
 	private int numUsingPlayers;
 	public float prevLidAngle;
 	public float lidAngle;
-
+	
 	public TileEntitySafe() {
 		items = new ItemStack[66];
 	}
@@ -36,6 +37,14 @@ public class TileEntitySafe extends TileEntityChest implements IInventory {
 	@Override
 	public ItemStack getStackInSlot(int i) {
 		return items[i];
+	}
+	
+	public int getChestFacing() {
+		return chestFacing;
+	}
+
+	public void setChestFacing(byte chestFacing) {
+		this.chestFacing = chestFacing;
 	}
 
 	@Override
@@ -91,7 +100,6 @@ public class TileEntitySafe extends TileEntityChest implements IInventory {
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		this.checkForAdjacentChests();
 		++this.ticksSinceSync;
 		float f;
 
@@ -132,19 +140,9 @@ public class TileEntitySafe extends TileEntityChest implements IInventory {
 		f = 0.1F;
 		double d0;
 
-		if (this.numUsingPlayers > 0 && this.lidAngle == 0.0F
-				&& this.adjacentChestZNeg == null
-				&& this.adjacentChestXNeg == null) {
+		if (this.numUsingPlayers > 0 && this.lidAngle == 0.0F) {
 			double d1 = (double) this.xCoord + 0.5D;
 			d0 = (double) this.zCoord + 0.5D;
-
-			if (this.adjacentChestZPosition != null) {
-				d0 += 0.5D;
-			}
-
-			if (this.adjacentChestXPos != null) {
-				d1 += 0.5D;
-			}
 
 			this.worldObj.playSoundEffect(d1, (double) this.yCoord + 0.5D, d0,
 					"random.chestopen", 0.5F,
@@ -167,19 +165,9 @@ public class TileEntitySafe extends TileEntityChest implements IInventory {
 
 			float f2 = 0.5F;
 
-			if (this.lidAngle < f2 && f1 >= f2
-					&& this.adjacentChestZNeg == null
-					&& this.adjacentChestXNeg == null) {
+			if (this.lidAngle < f2 && f1 >= f2) {
 				d0 = (double) this.xCoord + 0.5D;
 				double d2 = (double) this.zCoord + 0.5D;
-
-				if (this.adjacentChestZPosition != null) {
-					d2 += 0.5D;
-				}
-
-				if (this.adjacentChestXPos != null) {
-					d0 += 0.5D;
-				}
 
 				this.worldObj.playSoundEffect(d0, (double) this.yCoord + 0.5D,
 						d2, "random.chestclosed", 0.5F,
@@ -193,40 +181,35 @@ public class TileEntitySafe extends TileEntityChest implements IInventory {
 	}
 
 	@Override
-	public boolean receiveClientEvent(int id, int i) {
-		if (id == 1)
+	public boolean receiveClientEvent(int i, int j) {
+		if (i == 1)
         {
-            this.numUsingPlayers = i;
-            return true;
+            numUsingPlayers = j;
         }
-        else
+        else if (i == 2)
         {
-            return super.receiveClientEvent(id, i);
+        	chestFacing = (byte) j;
         }
+        else if (i == 3)
+        {
+            chestFacing = (byte) (j & 0x7);
+            numUsingPlayers = (j & 0xF8) >> 3;
+        }
+        return true;
 	}
 
 	@Override
 	public void openChest() {
-		   if (this.numUsingPlayers < 0)
-	        {
-	            this.numUsingPlayers = 0;
-	        }
-
-	        ++this.numUsingPlayers;
-	        this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, this.getBlockType().blockID, 1, this.numUsingPlayers);
-	        this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, this.getBlockType().blockID);
-	        this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord - 1, this.zCoord, this.getBlockType().blockID);
+		if (worldObj == null) return;
+        numUsingPlayers++;
+        worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID, 1, numUsingPlayers);
 	}
 
 	@Override
 	public void closeChest() {
-		if (this.getBlockType() != null && this.getBlockType() instanceof BlockChest)
-        {
-            --this.numUsingPlayers;
-            this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, this.getBlockType().blockID, 1, this.numUsingPlayers);
-            this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, this.getBlockType().blockID);
-            this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord - 1, this.zCoord, this.getBlockType().blockID);
-        }
+		if (worldObj == null) return;
+        numUsingPlayers--;
+        worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID, 1, numUsingPlayers);
 	}
 
 	@Override
@@ -250,6 +233,7 @@ public class TileEntitySafe extends TileEntityChest implements IInventory {
 			}
 		}
 		compound.setTag("Items", items);
+		compound.setByte("facing", chestFacing);
 	}
 
 	@Override
@@ -267,5 +251,16 @@ public class TileEntitySafe extends TileEntityChest implements IInventory {
 						ItemStack.loadItemStackFromNBT(item));
 			}
 		}
+		chestFacing = compound.getByte("facing");
+	}
+	public void rotateAround(ForgeDirection axis)
+    {
+        setChestFacing((byte)ForgeDirection.getOrientation(chestFacing).getRotation(axis).ordinal());
+        worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID, 2, getChestFacing());
+    }
+	@Override
+	public void onInventoryChanged() {
+		// TODO Auto-generated method stub
+
 	}
 }
