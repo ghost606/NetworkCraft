@@ -1,5 +1,6 @@
 package ghost606.networkcraft.blocks;
 
+import static net.minecraftforge.common.ForgeDirection.DOWN;
 import ghost606.networkcraft.Networkcraft;
 import ghost606.networkcraft.information.BlockInfo;
 import ghost606.networkcraft.tileentities.TileEntitySafe;
@@ -10,38 +11,42 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.network.FMLNetworkHandler;
 
 public class BlockSafe extends BlockChest {
 
-	public BlockSafe(int id)
-	{
+	public BlockSafe(int id) {
 		super(id, -1);
 		this.setHardness(3.0F);
 		this.setCreativeTab(Networkcraft.tabNetworkcraft);
 		this.setUnlocalizedName(BlockInfo.Safe.UNLOCALIZED_NAME);
-		this.disableStats();
+		this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world)
-	{
+	public TileEntity createNewTileEntity(World world) {
 		return new TileEntitySafe();
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
-	{
-		if (!world.isRemote) {
-			FMLNetworkHandler.openGui(player, Networkcraft.instance, 0, world, x, y, z);
+	public boolean onBlockActivated(World world, int x, int y, int z,
+			EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+		if (world.isRemote) {
+			return true;
+		} else {
+			IInventory iinventory = this.getInventory(world, x, y, z);
+
+			if (iinventory != null) {
+				player.displayGUIChest(iinventory);
+			}
+
+			return true;
 		}
-		return true;
 	}
 
 	@Override
-	public void breakBlock(World world, int x, int y, int z, int id, int meta)
-	{
+	public void breakBlock(World world, int x, int y, int z, int id, int meta) {
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if (te != null && te instanceof IInventory) {
 			IInventory inventory = (IInventory) te;
@@ -73,33 +78,58 @@ public class BlockSafe extends BlockChest {
 	}
 
 	@Override
-	public void unifyAdjacentChests(World par1World, int par2, int par3, int par4)
-	{
-
-	}
-
-	@Override
-	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
-	{
+	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 		return true;
 	}
 
 	@Override
-	public void onBlockAdded(World world, int x, int y, int z)
-	{
+	public void onBlockAdded(World world, int x, int y, int z) {
 		super.onBlockAdded(world, x, y, z);
-		world.markBlockForUpdate(x, y, z);
 	}
 
 	@Override
-	public boolean isOpaqueCube()
-	{
+	public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, int x,
+			int y, int z) {
+		if (blockAccess.getBlockId(x, y, z - 1) == this.blockID) {
+			this.setBlockBounds(0.0625F, 0.0F, 0.0F, 0.9375F, 0.875F, 0.9375F);
+		} else if (blockAccess.getBlockId(x, y, z + 1) == this.blockID) {
+			this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 1.0F);
+		} else if (blockAccess.getBlockId(x - 1, y, z) == this.blockID) {
+			this.setBlockBounds(0.0F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
+		} else if (blockAccess.getBlockId(x + 1, y, z) == this.blockID) {
+			this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 1.0F, 0.875F, 0.9375F);
+		} else {
+			this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F,
+					0.9375F);
+		}
+	}
+
+	@Override
+	public IInventory getInventory(World world, int x, int y, int z) {
+		Object object = (TileEntitySafe) world.getBlockTileEntity(x, y, z);
+
+		if (object == null) {
+			return null;
+		} else if (world.isBlockSolidOnSide(x, y + 1, z, DOWN)) {
+			return null;
+		} else if (isOcelotBlockingChest(world, x, y, z)) {
+			return null;
+		}
+		return (IInventory) object;
+	}
+
+	@Override
+	public boolean isOpaqueCube() {
 		return false;
 	}
 
 	@Override
-	public int getRenderType()
-	{
+	public int getRenderType() {
 		return 22;
+	}
+
+	@Override
+	public boolean renderAsNormalBlock() {
+		return false;
 	}
 }
