@@ -1,4 +1,4 @@
-package ghost606.networkcraft.container;
+package ghost606.networkcraft.inventory;
 
 import ghost606.networkcraft.tileentities.TileEntitySafe;
 import net.minecraft.entity.player.EntityPlayer;

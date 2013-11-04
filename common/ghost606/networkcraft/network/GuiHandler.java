@@ -1,12 +1,12 @@
 package ghost606.networkcraft.network;
 
 import ghost606.networkcraft.Networkcraft;
-import ghost606.networkcraft.container.ContainerRightManager;
-import ghost606.networkcraft.container.ContainerSafe;
-import ghost606.networkcraft.container.ContainerUserManager;
 import ghost606.networkcraft.gui.GuiRightManager;
 import ghost606.networkcraft.gui.GuiSafe;
 import ghost606.networkcraft.gui.GuiUserManager;
+import ghost606.networkcraft.inventory.ContainerRightManager;
+import ghost606.networkcraft.inventory.ContainerSafe;
+import ghost606.networkcraft.inventory.ContainerUserManager;
 import ghost606.networkcraft.tileentities.TileEntityRightManager;
 import ghost606.networkcraft.tileentities.TileEntitySafe;
 import ghost606.networkcraft.tileentities.TileEntityUserManager;

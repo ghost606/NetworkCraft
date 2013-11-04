@@ -1,4 +1,4 @@
-package ghost606.networkcraft.blocks;
+package ghost606.networkcraft.block;
 
 import ghost606.networkcraft.Networkcraft;
 import ghost606.networkcraft.information.BlockInfo;
@@ -54,31 +54,7 @@ public class BlockSafe extends BlockContainer {
 	@Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityliving, ItemStack itemStack)
     {
-        byte chestFacing = 0;
-        int facing = MathHelper.floor_double((double) ((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
-        if (facing == 0)
-        {
-            chestFacing = 2;
-        }
-        if (facing == 1)
-        {
-            chestFacing = 5;
-        }
-        if (facing == 2)
-        {
-            chestFacing = 3;
-        }
-        if (facing == 3)
-        {
-            chestFacing = 4;
-        }
-        TileEntity te = world.getBlockTileEntity(x, y, z);
-        if (te != null && te instanceof TileEntitySafe)
-        {
-        	TileEntitySafe teic = (TileEntitySafe) te;
-            teic.setChestFacing(chestFacing);
-            world.markBlockForUpdate(x, y, z);
-        }
+       
     }	
 	
 	@Override
@@ -138,23 +114,4 @@ public class BlockSafe extends BlockContainer {
 	public boolean renderAsNormalBlock() {
 		return false;
 	}
-	
-	@Override
-	public boolean rotateBlock(World worldObj, int x, int y, int z,
-			ForgeDirection axis) {
-		if (worldObj.isRemote)
-        {
-            return false;
-        }
-        if (axis == ForgeDirection.UP || axis == ForgeDirection.DOWN)
-        {
-            TileEntity tileEntity = worldObj.getBlockTileEntity(x, y, z);
-            if (tileEntity instanceof TileEntitySafe) {
-                TileEntitySafe icte = (TileEntitySafe) tileEntity;
-                icte.rotateAround(axis);
-            }
-            return true;
-        }
-        return false;
-    }
 }

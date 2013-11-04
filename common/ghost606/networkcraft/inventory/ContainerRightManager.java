@@ -1,4 +1,4 @@
-package ghost606.networkcraft.container;
+package ghost606.networkcraft.inventory;
 
 import ghost606.networkcraft.tileentities.TileEntityRightManager;
 import net.minecraft.entity.player.EntityPlayer;

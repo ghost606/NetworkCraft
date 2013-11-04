@@ -1,6 +1,6 @@
 package ghost606.networkcraft.gui;
 
-import ghost606.networkcraft.container.ContainerUserManager;
+import ghost606.networkcraft.inventory.ContainerUserManager;
 import ghost606.networkcraft.resources.ResourceManager;
 import ghost606.networkcraft.tileentities.TileEntityUserManager;
 import net.minecraft.client.Minecraft;

@@ -1,9 +1,9 @@
 package ghost606.networkcraft.gui;
 
-import ghost606.networkcraft.container.ContainerSafe;
 import ghost606.networkcraft.gui.elements.tab.TabCollection;
 import ghost606.networkcraft.gui.elements.tab.UserManagerTab;
 import ghost606.networkcraft.gui.elements.tab.UserTab;
+import ghost606.networkcraft.inventory.ContainerSafe;
 import ghost606.networkcraft.resources.ResourceManager;
 import ghost606.networkcraft.tileentities.TileEntitySafe;
 

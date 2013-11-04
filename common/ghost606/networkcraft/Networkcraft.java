@@ -1,6 +1,6 @@
 package ghost606.networkcraft;
 
-import ghost606.networkcraft.blocks.Blocks;
+import ghost606.networkcraft.block.Blocks;
 import ghost606.networkcraft.configuration.ConfigHandler;
 import ghost606.networkcraft.core.EventHandlerCore;
 import ghost606.networkcraft.information.ModInfo;

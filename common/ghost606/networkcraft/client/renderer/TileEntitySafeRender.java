@@ -1,4 +1,4 @@
-package ghost606.networkcraft.rendering;
+package ghost606.networkcraft.client.renderer;
 
 import ghost606.networkcraft.resources.ResourceManager;
 import ghost606.networkcraft.tileentities.TileEntitySafe;
@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class RenderSafe extends TileEntitySpecialRenderer {
+public class TileEntitySafeRender extends TileEntitySpecialRenderer {
 
 	private ModelChest chestModel = new ModelChest();
 
@@ -17,7 +17,7 @@ public class RenderSafe extends TileEntitySpecialRenderer {
 			double y, double z, float partialTick) {
 		bindTexture(ResourceManager.Block_Textures.Safe);
 
-		int i = tileEntity.getChestFacing();
+		int i = tileEntity.getBlockMetadata();
 
 		GL11.glPushMatrix();
 		GL11.glEnable(32826);

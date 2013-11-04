@@ -1,4 +1,4 @@
-package ghost606.networkcraft.blocks;
+package ghost606.networkcraft.block;
 
 import ghost606.networkcraft.information.BlockInfo;
 import ghost606.networkcraft.tileentities.TileEntityRightManager;

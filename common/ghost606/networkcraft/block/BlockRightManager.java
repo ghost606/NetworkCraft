@@ -1,4 +1,4 @@
-package ghost606.networkcraft.blocks;
+package ghost606.networkcraft.block;
 
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
