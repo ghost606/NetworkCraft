@@ -1,7 +1,7 @@
 package ghost606.networkcraft.block;
 
 import ghost606.networkcraft.Networkcraft;
-import ghost606.networkcraft.information.BlockInfo;
+import ghost606.networkcraft.tileentities.TileEntityNetworkCraft;
 import ghost606.networkcraft.tileentities.TileEntitySafe;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -12,10 +12,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import cpw.mods.fml.common.network.FMLNetworkHandler;
+import net.minecraft.util.MathHelper;
 
 public class BlockSafe extends BlockContainer {
 
@@ -23,7 +23,6 @@ public class BlockSafe extends BlockContainer {
 		super(id, Material.iron);
 		this.setHardness(3.0F);
 		this.setCreativeTab(Networkcraft.tabNetworkcraft);
-		this.setUnlocalizedName(BlockInfo.Safe.UNLOCALIZED_NAME);
 		this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 	}
 
@@ -33,29 +32,48 @@ public class BlockSafe extends BlockContainer {
 	}
 
 	@Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack) {
+
+        int direction = 0;
+        int facing = MathHelper.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+
+        if (facing == 0) {
+            direction = ForgeDirection.NORTH.ordinal();
+        }
+        else if (facing == 1) {
+            direction = ForgeDirection.EAST.ordinal();
+        }
+        else if (facing == 2) {
+            direction = ForgeDirection.SOUTH.ordinal();
+        }
+        else if (facing == 3) {
+            direction = ForgeDirection.WEST.ordinal();
+        }
+
+        world.setBlockMetadataWithNotify(x, y, z, direction, 3);
+
+        ((TileEntityNetworkCraft) world.getBlockTileEntity(x, y, z)).setOrientation(direction);
+    }
+	
+	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z,
 			EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-		if (!world.isRemote) {
-			TileEntity te = world.getBlockTileEntity(x, y, z);
-			if (te == null || !(te instanceof TileEntitySafe)) {
-				return true;
-			}
+		if (player.isSneaking())
+            return true;
+        else if (world.isBlockSolidOnSide(x, y + 1, z, ForgeDirection.DOWN))
+            return true;
+        else {
+            if (!world.isRemote) {
+                TileEntitySafe tileEntitySafe = (TileEntitySafe) world.getBlockTileEntity(x, y, z);
 
-			if (world.isBlockSolidOnSide(x, y + 1, z, ForgeDirection.DOWN)) {
-				return true;
-			}
+                if (tileEntitySafe != null) {
+                	FMLNetworkHandler.openGui(player, Networkcraft.instance, 0, world, x, y, z);
+                }
+            }
 
-			FMLNetworkHandler.openGui(player, Networkcraft.instance, 0, world,
-					x, y, z);
-		}
-		return true;
-	}
-
-	@Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityliving, ItemStack itemStack)
-    {
-       
-    }	
+            return true;
+        }
+	}	
 	
 	@Override
 	public void breakBlock(World world, int x, int y, int z, int id, int meta) {

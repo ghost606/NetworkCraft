@@ -12,5 +12,9 @@ public class ModInfo {
 		public static final String GUI = "textures/gui";
 		public static final String BLOCKS = "textures/blocks";
 	}
+	public static class NBT
+	{
+		public static final String TE_DIRECTION_KEY = "teDirection";
+	}
 	
 }

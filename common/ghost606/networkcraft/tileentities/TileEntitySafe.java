@@ -6,21 +6,19 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
 
-public class TileEntitySafe extends TileEntity implements IInventory {
+public class TileEntitySafe extends TileEntityNetworkCraft implements IInventory {
 
 	private ItemStack[] items;
 	private int ticksSinceSync;
 	private int numUsingPlayers;
-	private ForgeDirection orientation;
 	
 	public float prevLidAngle;
 	public float lidAngle;
-	
+	public static final int INVENTORY_SIZE = 6 * 11;
 	public TileEntitySafe() {
-		items = new ItemStack[66];
+		super();
+		items = new ItemStack[INVENTORY_SIZE];
 	}
 
 	@Override
@@ -32,21 +30,6 @@ public class TileEntitySafe extends TileEntity implements IInventory {
 	public ItemStack getStackInSlot(int i) {
 		return items[i];
 	}
-	
-	public ForgeDirection getOrientation() {
-
-        return orientation;
-    }
-
-    public void setOrientation(ForgeDirection orientation) {
-
-        this.orientation = orientation;
-    }
-
-    public void setOrientation(int orientation) {
-
-        this.orientation = ForgeDirection.getOrientation(orientation);
-    }
 	
 	@Override
 	public ItemStack decrStackSize(int i, int count) {
@@ -79,7 +62,7 @@ public class TileEntitySafe extends TileEntity implements IInventory {
 
 	@Override
 	public String getInvName() {
-		return "Safe chest";
+		return BlockInfo.Safe.NAME;
 	}
 
 	@Override
@@ -96,6 +79,29 @@ public class TileEntitySafe extends TileEntity implements IInventory {
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
 		return entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5,
 				zCoord + 0.5) <= 64;
+	}
+
+	@Override
+	public boolean receiveClientEvent(int eventID, int numUsingPlayers) {
+		 if (eventID == 1) {
+	            this.numUsingPlayers = numUsingPlayers;
+	            return true;
+	        }
+	        else
+	            return super.receiveClientEvent(eventID, numUsingPlayers);
+	}
+
+	@Override
+	public void openChest() {
+		++numUsingPlayers;
+        worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID, 1, numUsingPlayers);
+	}
+
+	@Override
+	public void closeChest() {
+		if (worldObj == null) return;
+        --numUsingPlayers;
+        worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID, 1, numUsingPlayers);
 	}
 
 	@Override
@@ -140,29 +146,6 @@ public class TileEntitySafe extends TileEntity implements IInventory {
             }
         }
 	}
-
-	@Override
-	public boolean receiveClientEvent(int i, int j) {
-		if (i == 1)
-        {
-            numUsingPlayers = j;
-        }
-        return true;
-	}
-
-	@Override
-	public void openChest() {
-		++numUsingPlayers;
-        worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID, 1, numUsingPlayers);
-	}
-
-	@Override
-	public void closeChest() {
-		if (worldObj == null) return;
-        --numUsingPlayers;
-        worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID, 1, numUsingPlayers);
-	}
-
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;

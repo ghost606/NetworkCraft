@@ -18,9 +18,9 @@ public class Blocks {
 		rightManager = new BlockRightManager(BlockInfo.RightManager.ID);
 		userManager = new BlockUserManager(BlockInfo.UserManager.ID);
 		
-		GameRegistry.registerBlock(safeChest, BlockInfo.Safe.KEY);
-		GameRegistry.registerBlock(rightManager, BlockInfo.RightManager.KEY);
-		GameRegistry.registerBlock(userManager, BlockInfo.UserManager.KEY);
+		GameRegistry.registerBlock(safeChest, BlockInfo.Safe.NAME);
+		GameRegistry.registerBlock(rightManager, BlockInfo.RightManager.NAME);
+		GameRegistry.registerBlock(userManager, BlockInfo.UserManager.NAME);
 	}
 	
 	public static void addNames()
@@ -32,8 +32,8 @@ public class Blocks {
 	
 	public static void registerTileEntities()
 	{
-		GameRegistry.registerTileEntity(TileEntitySafe.class, BlockInfo.Safe.TE_KEY);
-		GameRegistry.registerTileEntity(TileEntityRightManager.class, BlockInfo.RightManager.TE_KEY);
-		GameRegistry.registerTileEntity(TileEntityUserManager.class, BlockInfo.UserManager.TE_KEY);
+		GameRegistry.registerTileEntity(TileEntitySafe.class, BlockInfo.Safe.TE_NAME);
+		GameRegistry.registerTileEntity(TileEntityRightManager.class, BlockInfo.RightManager.TE_NAME);
+		GameRegistry.registerTileEntity(TileEntityUserManager.class, BlockInfo.UserManager.TE_NAME);
 	}
 }

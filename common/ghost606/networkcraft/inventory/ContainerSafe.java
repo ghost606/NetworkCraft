@@ -9,11 +9,12 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerSafe extends Container {
 
-	private TileEntitySafe safe;
+	private TileEntitySafe tileEntitySafe;
 	
 	public ContainerSafe(InventoryPlayer invPlayer, TileEntitySafe safe)
 	{
-		this.safe = safe;
+		this.tileEntitySafe = safe;
+		this.tileEntitySafe.openChest();
 		
 		for (int x = 0; x < 9; x++)
 		{
@@ -37,9 +38,16 @@ public class ContainerSafe extends Container {
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
-		return this.safe.isUseableByPlayer(entityplayer);
+		return this.tileEntitySafe.isUseableByPlayer(entityplayer);
 	}
 	
+	@Override
+    public void onContainerClosed(EntityPlayer entityPlayer) {
+
+        super.onContainerClosed(entityPlayer);
+        tileEntitySafe.closeChest();
+    }
+
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int i) {
 		Slot slot = getSlot(i);
@@ -56,7 +64,7 @@ public class ContainerSafe extends Container {
 					return null;
 				}
 			}
-			else if (!mergeItemStack(stack, 36, 36 + this.safe.getSizeInventory(), false))
+			else if (!mergeItemStack(stack, 36, 36 + this.tileEntitySafe.getSizeInventory(), false))
 			{
 				return null;
 			}

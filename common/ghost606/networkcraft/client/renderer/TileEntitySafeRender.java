@@ -5,6 +5,7 @@ import ghost606.networkcraft.tileentities.TileEntitySafe;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -15,45 +16,48 @@ public class TileEntitySafeRender extends TileEntitySpecialRenderer {
 
 	public void renderTileEntityChest(TileEntitySafe tileEntity, double x,
 			double y, double z, float partialTick) {
-		bindTexture(ResourceManager.Block_Textures.Safe);
+		
+		ForgeDirection direction = null;
 
-		int i = tileEntity.getBlockMetadata();
-
+        if (tileEntity.getWorldObj() != null) {
+            direction = ForgeDirection.getOrientation(tileEntity.getBlockMetadata());
+        }
+        
+        bindTexture(ResourceManager.Block_Textures.Safe);
 		GL11.glPushMatrix();
-		GL11.glEnable(32826);
-
+		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glTranslatef((float) x, (float) y + 1.0F, (float) z + 1.0F);
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
 		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 
-		short short1 = 0;
+		short angle = 0;
 
-		if (i == 2) {
-			short1 = 180;
+		if (direction != null)
+		{
+			if (direction == ForgeDirection.NORTH) {
+                angle = 180;
+            }
+            else if (direction == ForgeDirection.SOUTH) {
+                angle = 0;
+            }
+            else if (direction == ForgeDirection.WEST) {
+                angle = 90;
+            }
+            else if (direction == ForgeDirection.EAST) {
+                angle = -90;
+            }
 		}
+		
 
-		if (i == 3) {
-			short1 = 0;
-		}
-
-		if (i == 4) {
-			short1 = 90;
-		}
-
-		if (i == 5) {
-			short1 = -90;
-		}
-
-		GL11.glRotatef((float) short1, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(angle, 0.0F, 1.0F, 0.0F);
 		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
 
-		float f1 = tileEntity.prevLidAngle
-				+ (tileEntity.lidAngle - tileEntity.prevLidAngle) * partialTick;
+		float adjustedLidAngle = tileEntity.prevLidAngle	+ (tileEntity.lidAngle - tileEntity.prevLidAngle) * partialTick;
 
-		f1 = 1.0F - f1;
-		f1 = 1.0F - f1 * f1 * f1;
-		chestModel.chestLid.rotateAngleX = -(f1 * (float) Math.PI / 2.0F);
+		adjustedLidAngle = 1.0F - adjustedLidAngle;
+		adjustedLidAngle = 1.0F - adjustedLidAngle * adjustedLidAngle * adjustedLidAngle;
+		chestModel.chestLid.rotateAngleX = -(adjustedLidAngle * (float) Math.PI / 2.0F);
 		chestModel.renderAll();
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 		GL11.glPopMatrix();

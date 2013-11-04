@@ -23,7 +23,6 @@ public class BlockRightManager extends BlockContainer {
 		super(id, Material.iron);
 		this.setHardness(3.0F);
 		this.setCreativeTab(Networkcraft.tabNetworkcraft);
-		this.setUnlocalizedName(BlockInfo.RightManager.UNLOCALIZED_NAME);
 	}
 	
 	@Override
