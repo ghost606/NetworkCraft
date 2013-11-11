@@ -3,7 +3,7 @@ package ghost606.networkcraft.gui.elements.tab;
 import net.minecraft.client.Minecraft;
 import ghost606.networkcraft.gui.GuiNetworkCraft;
 import ghost606.networkcraft.gui.elements.button.GuiIconButton;
-import ghost606.networkcraft.resources.IconProvider;
+import ghost606.networkcraft.resources.textures.IconProvider;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

@@ -38,18 +38,17 @@ public class Networkcraft
 	{
 		ConfigHandler.init(fml.getSuggestedConfigurationFile());
 		Blocks.initBlocks();
-		
-		proxy.initSounds();
-		proxy.initRenders();
+		proxy.registerTileEntities();
+		proxy.initRenderingAndTextures();
 	}
 	@EventHandler
 	public void init(FMLInitializationEvent fml)
 	{
+		new GuiHandler();
 		MinecraftForge.EVENT_BUS.register(new EventHandlerCore());
 		LanguageRegistry.instance().addStringLocalization("itemGroup.Networkcraft", "en_US", "Networkcraft");
 		Blocks.addNames();
-		Blocks.registerTileEntities();
-		new GuiHandler();
+	
 	}
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent fml)

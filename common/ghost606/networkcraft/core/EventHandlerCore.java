@@ -1,6 +1,6 @@
 package ghost606.networkcraft.core;
 
-import ghost606.networkcraft.resources.IconProvider;
+import ghost606.networkcraft.resources.textures.IconProvider;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.client.event.TextureStitchEvent;

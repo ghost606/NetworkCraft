@@ -4,7 +4,7 @@ import ghost606.networkcraft.gui.elements.tab.TabCollection;
 import ghost606.networkcraft.gui.elements.tab.UserManagerTab;
 import ghost606.networkcraft.gui.elements.tab.UserTab;
 import ghost606.networkcraft.inventory.ContainerSafe;
-import ghost606.networkcraft.resources.ResourceManager;
+import ghost606.networkcraft.resources.textures.ResourceManager;
 import ghost606.networkcraft.tileentities.TileEntitySafe;
 
 import net.minecraft.client.Minecraft;
@@ -35,7 +35,7 @@ public class GuiSafe extends GuiNetworkCraft {
 	
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
-		GL11.glColor4f(1, 1, 1,1);
+		GL11.glColor4f(1, 1, 1, 1);
 		
 		Minecraft.getMinecraft().renderEngine.bindTexture(ResourceManager.Gui_Textures.SafeChest);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);

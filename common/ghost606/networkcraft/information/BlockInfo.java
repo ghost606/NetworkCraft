@@ -9,6 +9,7 @@ public class BlockInfo {
 	public static class Safe
 	{
 		public static int ID;
+		public static int RENDER_ID;
 		public static final String NAME = "Safe";
 		public static final String TE_NAME = "SafeTileEntity";
 		public static final int DEFAULT_ID = 801;

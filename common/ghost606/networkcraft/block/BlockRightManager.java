@@ -35,7 +35,7 @@ public class BlockRightManager extends BlockContainer {
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
 	{
 		if (!world.isRemote) {
-			FMLNetworkHandler.openGui(player, Networkcraft.instance, 1, world, x, y, z);
+			FMLNetworkHandler.openGui(player, Networkcraft.instance, ModInfo.GuiID.RIGHTMANAGER, world, x, y, z);
 		}
 		return true;
 	}

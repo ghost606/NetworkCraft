@@ -4,6 +4,7 @@ import ghost606.networkcraft.Networkcraft;
 import ghost606.networkcraft.gui.GuiRightManager;
 import ghost606.networkcraft.gui.GuiSafe;
 import ghost606.networkcraft.gui.GuiUserManager;
+import ghost606.networkcraft.information.ModInfo;
 import ghost606.networkcraft.inventory.ContainerRightManager;
 import ghost606.networkcraft.inventory.ContainerSafe;
 import ghost606.networkcraft.inventory.ContainerUserManager;
@@ -29,17 +30,17 @@ public class GuiHandler implements IGuiHandler {
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if (te != null) {
 			switch (ID) {
-			case 0:
+			case ModInfo.GuiID.SAFE:
 				if (te instanceof TileEntitySafe) {
 					return new ContainerSafe(player.inventory,
 							(TileEntitySafe) te);
 				}
-			case 1:
+			case ModInfo.GuiID.RIGHTMANAGER:
 				if (te instanceof TileEntityRightManager) {
 					return new ContainerRightManager(player.inventory,
 							(TileEntityRightManager) te);
 				}
-			case 2:
+			case ModInfo.GuiID.USERMANAGER:
 				if (te instanceof TileEntityUserManager) {
 					return new ContainerUserManager(player.inventory,
 							(TileEntityUserManager) te);
@@ -56,16 +57,16 @@ public class GuiHandler implements IGuiHandler {
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if (te != null) {
 			switch (ID) {
-			case 0:
+			case ModInfo.GuiID.SAFE:
 				if (te instanceof TileEntitySafe) {
 					return new GuiSafe(player.inventory, (TileEntitySafe) te);
 				}
-			case 1:
+			case ModInfo.GuiID.RIGHTMANAGER:
 				if (te instanceof TileEntityRightManager) {
 					return new GuiRightManager(player.inventory,
 							(TileEntityRightManager) te);
 				}
-			case 2:
+			case ModInfo.GuiID.USERMANAGER:
 				if (te instanceof TileEntityUserManager) {
 					return new GuiUserManager(player.inventory,
 							(TileEntityUserManager) te);

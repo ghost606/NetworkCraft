@@ -1,4 +1,4 @@
-package ghost606.networkcraft.resources;
+package ghost606.networkcraft.resources.textures;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

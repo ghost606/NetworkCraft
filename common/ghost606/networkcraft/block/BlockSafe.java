@@ -1,7 +1,8 @@
 package ghost606.networkcraft.block;
 
 import ghost606.networkcraft.Networkcraft;
-import ghost606.networkcraft.tileentities.TileEntityNetworkCraft;
+import ghost606.networkcraft.information.BlockInfo;
+import ghost606.networkcraft.information.ModInfo;
 import ghost606.networkcraft.tileentities.TileEntitySafe;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -52,7 +53,7 @@ public class BlockSafe extends BlockContainer {
 
         world.setBlockMetadataWithNotify(x, y, z, direction, 3);
 
-        ((TileEntityNetworkCraft) world.getBlockTileEntity(x, y, z)).setOrientation(direction);
+        ((TileEntitySafe) world.getBlockTileEntity(x, y, z)).setOrientation(direction);
     }
 	
 	@Override
@@ -67,7 +68,7 @@ public class BlockSafe extends BlockContainer {
                 TileEntitySafe tileEntitySafe = (TileEntitySafe) world.getBlockTileEntity(x, y, z);
 
                 if (tileEntitySafe != null) {
-                	FMLNetworkHandler.openGui(player, Networkcraft.instance, 0, world, x, y, z);
+                	FMLNetworkHandler.openGui(player, Networkcraft.instance, ModInfo.GuiID.SAFE, world, x, y, z);
                 }
             }
 
@@ -125,7 +126,7 @@ public class BlockSafe extends BlockContainer {
 
 	@Override
 	public int getRenderType() {
-		return 22;
+		return BlockInfo.Safe.RENDER_ID;
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package ghost606.networkcraft.resources;
+package ghost606.networkcraft.resources.textures;
 
 import ghost606.networkcraft.information.ModInfo;
 import net.minecraft.util.ResourceLocation;

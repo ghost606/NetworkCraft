@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import ghost606.networkcraft.gui.GuiNetworkCraft;
 import ghost606.networkcraft.gui.elements.IGuiElement;
-import ghost606.networkcraft.resources.ResourceManager;
+import ghost606.networkcraft.resources.textures.ResourceManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.texture.TextureMap;

@@ -1,6 +1,6 @@
 package ghost606.networkcraft.client.renderer;
 
-import ghost606.networkcraft.resources.ResourceManager;
+import ghost606.networkcraft.resources.textures.ResourceManager;
 import ghost606.networkcraft.tileentities.TileEntitySafe;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -53,7 +53,7 @@ public class TileEntitySafeRender extends TileEntitySpecialRenderer {
 		GL11.glRotatef(angle, 0.0F, 1.0F, 0.0F);
 		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
 
-		float adjustedLidAngle = tileEntity.prevLidAngle	+ (tileEntity.lidAngle - tileEntity.prevLidAngle) * partialTick;
+		float adjustedLidAngle = tileEntity.getPrevLidAngle()	+ (tileEntity.getLidAngle() - tileEntity.getPrevLidAngle()) * partialTick;
 
 		adjustedLidAngle = 1.0F - adjustedLidAngle;
 		adjustedLidAngle = 1.0F - adjustedLidAngle * adjustedLidAngle * adjustedLidAngle;

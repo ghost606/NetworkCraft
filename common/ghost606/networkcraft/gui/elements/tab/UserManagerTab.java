@@ -2,7 +2,7 @@ package ghost606.networkcraft.gui.elements.tab;
 
 import ghost606.networkcraft.gui.GuiNetworkCraft;
 import ghost606.networkcraft.gui.elements.listview.ListView;
-import ghost606.networkcraft.resources.IconProvider;
+import ghost606.networkcraft.resources.textures.IconProvider;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

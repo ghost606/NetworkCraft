@@ -1,23 +1,19 @@
 package ghost606.networkcraft.client.item;
 
-import ghost606.networkcraft.resources.ResourceManager;
+import ghost606.networkcraft.resources.textures.ResourceManager;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
-
+import cpw.mods.fml.client.FMLClientHandler;
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-public class itemSafeRenderer {
+public class itemSafeRenderer implements IItemRenderer {
 	private ModelChest modelChest;
 
 	public itemSafeRenderer() {
 		this.modelChest = new ModelChest();
 	}
-	
+
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
 
@@ -58,7 +54,8 @@ public class itemSafeRenderer {
 
 	private void renderSafe(float x, float y, float z) {
 
-		bindTexture(ResourceManager.Block_Textures.Safe);
+		FMLClientHandler.instance().getClient().renderEngine
+				.bindTexture(ResourceManager.Block_Textures.Safe);
 		GL11.glPushMatrix(); // start
 		GL11.glTranslatef(x, y, z); // size
 		GL11.glRotatef(180, 1, 0, 0);

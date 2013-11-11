@@ -1,5 +1,6 @@
 package ghost606.networkcraft.tileentities;
 
+import ghost606.networkcraft.information.BlockInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -49,7 +50,7 @@ public class TileEntityUserManager extends TileEntity implements IInventory {
 	@Override
 	public String getInvName() {
 		// TODO Auto-generated method stub
-		return "User manager";
+		return BlockInfo.UserManager.NAME;
 	}
 
 	@Override

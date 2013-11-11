@@ -5,7 +5,7 @@ import java.util.List;
 
 import ghost606.networkcraft.gui.GuiNetworkCraft;
 import ghost606.networkcraft.gui.elements.IGuiElement;
-import ghost606.networkcraft.resources.ResourceManager;
+import ghost606.networkcraft.resources.textures.ResourceManager;
 
 import org.lwjgl.opengl.GL11;
 

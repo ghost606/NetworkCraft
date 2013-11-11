@@ -1,24 +1,56 @@
 package ghost606.networkcraft.tileentities;
 
 import ghost606.networkcraft.information.BlockInfo;
+import ghost606.networkcraft.information.ModInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
 
-public class TileEntitySafe extends TileEntityNetworkCraft implements IInventory {
+public class TileEntitySafe extends TileEntity implements
+		IInventory {
 
 	private ItemStack[] items;
 	private int ticksSinceSync;
 	private int numUsingPlayers;
-	
-	public float prevLidAngle;
-	public float lidAngle;
+
+	private float prevLidAngle;
+	private float lidAngle;
+	private ForgeDirection orientation;
+
+	public float getPrevLidAngle() {
+		return prevLidAngle;
+	}
+
+	public void setPrevLidAngle(float prevLidAngle) {
+		this.prevLidAngle = prevLidAngle;
+	}
+
+	public float getLidAngle() {
+		return lidAngle;
+	}
+
+	public void setLidAngle(float lidAngle) {
+		this.lidAngle = lidAngle;
+	}
+
+	public ForgeDirection getOrientation() {
+		return orientation;
+	}
+
+	public void setOrientation(int orientation) {
+		this.orientation = ForgeDirection.getOrientation(orientation);
+	}
+
 	public static final int INVENTORY_SIZE = 6 * 11;
+
 	public TileEntitySafe() {
 		super();
 		items = new ItemStack[INVENTORY_SIZE];
+		orientation = ForgeDirection.SOUTH;
 	}
 
 	@Override
@@ -30,7 +62,7 @@ public class TileEntitySafe extends TileEntityNetworkCraft implements IInventory
 	public ItemStack getStackInSlot(int i) {
 		return items[i];
 	}
-	
+
 	@Override
 	public ItemStack decrStackSize(int i, int count) {
 		ItemStack itemStack = getStackInSlot(i);
@@ -83,69 +115,77 @@ public class TileEntitySafe extends TileEntityNetworkCraft implements IInventory
 
 	@Override
 	public boolean receiveClientEvent(int eventID, int numUsingPlayers) {
-		 if (eventID == 1) {
-	            this.numUsingPlayers = numUsingPlayers;
-	            return true;
-	        }
-	        else
-	            return super.receiveClientEvent(eventID, numUsingPlayers);
+		if (eventID == 1) {
+			this.numUsingPlayers = numUsingPlayers;
+			return true;
+		} else
+			return super.receiveClientEvent(eventID, numUsingPlayers);
 	}
 
 	@Override
 	public void openChest() {
 		++numUsingPlayers;
-        worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID, 1, numUsingPlayers);
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID, 1,
+				numUsingPlayers);
 	}
 
 	@Override
 	public void closeChest() {
-		if (worldObj == null) return;
-        --numUsingPlayers;
-        worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID, 1, numUsingPlayers);
+		if (worldObj == null)
+			return;
+		--numUsingPlayers;
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID, 1,
+				numUsingPlayers);
 	}
 
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
 		if (++ticksSinceSync % 20 * 4 == 0) {
-            worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID, 1, numUsingPlayers);
-        }
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, BlockInfo.Safe.ID,
+					1, numUsingPlayers);
+		}
 
 		this.prevLidAngle = this.lidAngle;
 		float angleIncrement = 0.1F;
-        double adjustedXCoord, adjustedZCoord;
+		double adjustedXCoord, adjustedZCoord;
 
-        if (numUsingPlayers > 0 && lidAngle == 0.0F) {
-            adjustedXCoord = xCoord + 0.5D;
-            adjustedZCoord = zCoord + 0.5D;
-            worldObj.playSoundEffect(adjustedXCoord, yCoord + 0.5D, adjustedZCoord, "random.chestopen", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
-        }
+		if (numUsingPlayers > 0 && lidAngle == 0.0F) {
+			adjustedXCoord = xCoord + 0.5D;
+			adjustedZCoord = zCoord + 0.5D;
+			worldObj.playSoundEffect(adjustedXCoord, yCoord + 0.5D,
+					adjustedZCoord, ModInfo.Sound.CHEST_OPEN, 0.5F,
+					worldObj.rand.nextFloat() * 0.1F + 0.9F);
+		}
 
-        if (numUsingPlayers == 0 && lidAngle > 0.0F || numUsingPlayers > 0 && lidAngle < 1.0F) {
-            float var8 = lidAngle;
+		if (numUsingPlayers == 0 && lidAngle > 0.0F || numUsingPlayers > 0
+				&& lidAngle < 1.0F) {
+			float var8 = lidAngle;
 
-            if (numUsingPlayers > 0) {
-                lidAngle += angleIncrement;
-            }
-            else {
-                lidAngle -= angleIncrement;
-            }
+			if (numUsingPlayers > 0) {
+				lidAngle += angleIncrement;
+			} else {
+				lidAngle -= angleIncrement;
+			}
 
-            if (lidAngle > 1.0F) {
-                lidAngle = 1.0F;
-            }
+			if (lidAngle > 1.0F) {
+				lidAngle = 1.0F;
+			}
 
-            if (lidAngle < 0.5F && var8 >= 0.5F) {
-                adjustedXCoord = xCoord + 0.5D;
-                adjustedZCoord = zCoord + 0.5D;
-                worldObj.playSoundEffect(adjustedXCoord, yCoord + 0.5D, adjustedZCoord, "random.chestclosed", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
-            }
+			if (lidAngle < 0.5F && var8 >= 0.5F) {
+				adjustedXCoord = xCoord + 0.5D;
+				adjustedZCoord = zCoord + 0.5D;
+				worldObj.playSoundEffect(adjustedXCoord, yCoord + 0.5D,
+						adjustedZCoord, ModInfo.Sound.CHEST_CLOSE, 0.5F,
+						worldObj.rand.nextFloat() * 0.1F + 0.9F);
+			}
 
-            if (lidAngle < 0.0F) {
-                lidAngle = 0.0F;
-            }
-        }
+			if (lidAngle < 0.0F) {
+				lidAngle = 0.0F;
+			}
+		}
 	}
+
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
@@ -167,6 +207,8 @@ public class TileEntitySafe extends TileEntityNetworkCraft implements IInventory
 			}
 		}
 		compound.setTag("Items", items);
+		compound.setByte(ModInfo.NBT.TE_DIRECTION_KEY,
+				(byte) orientation.ordinal());
 	}
 
 	@Override
@@ -184,7 +226,12 @@ public class TileEntitySafe extends TileEntityNetworkCraft implements IInventory
 						ItemStack.loadItemStackFromNBT(item));
 			}
 		}
+		if (compound.hasKey(ModInfo.NBT.TE_DIRECTION_KEY)) {
+			this.orientation = ForgeDirection.getOrientation(compound
+					.getByte(ModInfo.NBT.TE_DIRECTION_KEY));
+		}
 	}
+
 	@Override
 	public void onInventoryChanged() {
 		// TODO Auto-generated method stub

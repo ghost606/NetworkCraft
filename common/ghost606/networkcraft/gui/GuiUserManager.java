@@ -1,7 +1,7 @@
 package ghost606.networkcraft.gui;
 
 import ghost606.networkcraft.inventory.ContainerUserManager;
-import ghost606.networkcraft.resources.ResourceManager;
+import ghost606.networkcraft.resources.textures.ResourceManager;
 import ghost606.networkcraft.tileentities.TileEntityUserManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -23,7 +23,7 @@ public class GuiUserManager extends GuiNetworkCraft {
 	
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
-		GL11.glColor4f(1, 1, 1,1);
+		GL11.glColor4f(1, 1, 1, 1);
 		
 		Minecraft.getMinecraft().renderEngine.bindTexture(ResourceManager.Gui_Textures.UserManager);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
